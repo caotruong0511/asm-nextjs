@@ -1,4 +1,6 @@
 import React from "react";
+import ClientFooter from "./Footer";
+import ClientHeader from "./Header";
 
 type ClientLayoutProps = {
   children: JSX.Element;
@@ -6,11 +8,13 @@ type ClientLayoutProps = {
 
 const ClientLayout = ({ children }: ClientLayoutProps) => {
   return (
-    <>
-      <header>Header Client</header>
+    <div className="font-quicksand">
+      <ClientHeader />
+
       <main>{children}</main>
-      <footer>Footer Client</footer>
-    </>
+
+      <ClientFooter />
+    </div>
   );
 };
 
