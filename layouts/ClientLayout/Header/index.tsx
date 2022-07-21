@@ -1,4 +1,12 @@
-import { faCartShopping, faPhoneAlt, faSearch, faSortDown, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faCartShopping,
+  faPhoneAlt,
+  faSearch,
+  faShoppingCart,
+  faSortDown,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +17,7 @@ type Props = {};
 const ClientHeader = (props: Props) => {
   return (
     <header className="border-b">
-      <div className="bg-[#4d8a54]">
+      <div className="bg-[#4d8a54] hidden md:block">
         <div className="container-base h-11 text-white flex items-center text-sm">
           <ul className="flex items-center">
             <FontAwesomeIcon icon={faPhoneAlt} />
@@ -88,16 +96,24 @@ const ClientHeader = (props: Props) => {
               </ul>
             </li>
 
-            <li className="flex items-center ml-3 cursor-pointer">
+            <li className="flex items-center ml-3 cursor-pointer relative">
+              <label className="absolute text-xs w-5 h-5 font-semibold flex justify-center items-center border-2 border-[#4d8a54] rounded-full left-[10px] -top-[10px] bg-white text-primary">
+                10
+              </label>
               <FontAwesomeIcon icon={faCartShopping} className="text-base" />
-              <span className="ml-1 hover:text-[#282828]">Giỏ hàng</span>
+              <span className="ml-3 hover:text-[#282828]">Giỏ hàng</span>
             </li>
           </ul>
         </div>
       </div>
 
       <div className="container-base flex items-center h-32">
-        <ul className="flex-1 flex items-center">
+        {/* icon bar on mobile */}
+        <div className="block md:hidden flex-1 text-[#333] cursor-pointer text-xl">
+          <FontAwesomeIcon icon={faBars} />
+        </div>
+
+        <ul className="flex-1 items-center hidden md:flex">
           <li className="font-bold hover:text-[#4d8a54] text-[#282828] mr-3">
             <Link href="">Trang chủ</Link>
           </li>
@@ -136,7 +152,7 @@ const ClientHeader = (props: Props) => {
           height={93}
         />
 
-        <ul className="flex-1 flex items-center justify-end">
+        <ul className="flex-1 items-center justify-end hidden md:flex">
           <li className="font-bold hover:text-[#4d8a54] text-[#282828]">
             <Link href="">Tin tức</Link>
           </li>
@@ -147,6 +163,12 @@ const ClientHeader = (props: Props) => {
             <Link href="">Liên hệ</Link>
           </li>
         </ul>
+
+        <div className="text-[#333] md:hidden flex-1 flex justify-end cursor-pointer text-xl">
+          <Link href="">
+            <FontAwesomeIcon icon={faShoppingCart} />
+          </Link>
+        </div>
       </div>
     </header>
   );
