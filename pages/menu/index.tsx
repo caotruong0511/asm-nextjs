@@ -23,7 +23,7 @@ const MenuPage = (props: Props) => {
             giác của bản thân và tận hưởng một cảm giác thật khoan khoái, tươi mới.
           </p>
         </div>
-        <div className="content-product__menu grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
+        <div className="content-product__menu grid grid-cols-2 md:grid-cols-4 gap-3 grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
           <div className="group">
             <div className="relative overflow-hidden border-solid border-[1px] border-[#ebebeb]">
               <div className="content-img">
@@ -137,7 +137,7 @@ const MenuPage = (props: Props) => {
             phê tuyệt hảo.
           </p>
         </div>
-        <div className="content-product__menu grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
+        <div className="content-product__menu grid grid-cols-2 md:grid-cols-4 gap-3 grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
           <div className="group">
             <div className="relative overflow-hidden border-solid border-[1px] border-[#ebebeb]">
               <div className="content-img">
@@ -251,7 +251,7 @@ const MenuPage = (props: Props) => {
             phê tuyệt hảo.
           </p>
         </div>
-        <div className="content-product__menu grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
+        <div className="content-product__menu grid grid-cols-2 md:grid-cols-4 gap-3 grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
           <div className="group">
             <div className="relative overflow-hidden border-solid border-[1px] border-[#ebebeb]">
               <div className="content-img">
@@ -365,7 +365,7 @@ const MenuPage = (props: Props) => {
             phê tuyệt hảo.
           </p>
         </div>
-        <div className="content-product__menu grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
+        <div className="content-product__menu grid grid-cols-2 md:grid-cols-4 gap-3 grid gap-x-8 gap-y-4 grid-cols-4 mt-[50px]">
           <div className="group">
             <div className="relative overflow-hidden border-solid border-[1px] border-[#ebebeb]">
               <div className="content-img">
