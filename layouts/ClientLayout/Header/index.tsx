@@ -123,7 +123,7 @@ const ClientHeader = (props: Props) => {
           <li className="z-[50] group relative font-bold hover:text-[#4d8a54] cursor-pointer text-[#282828] mx-3">
             <Link href="">
               <div className="flex">
-                <span className="mr-1">Sản phẩm</span>
+                <Link href="/product">Sản phẩm</Link>
                 <FontAwesomeIcon icon={faSortDown} />
               </div>
             </Link>
