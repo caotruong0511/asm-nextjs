@@ -33,13 +33,13 @@ const SigninPage = (props: Props) => {
             <div className="form-signup">
               <input
                 type="text"
-                className="mt-[20px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
+                className="mt-[20px] px-[20px] outline-none border-solid border-[1px] border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Email"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
+                className="mt-[17px] px-[20px] outline-none border-solid border-[1px] border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Mật khẩu"
               />
             </div>
