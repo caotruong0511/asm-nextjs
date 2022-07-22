@@ -4,19 +4,19 @@ type Props = {}
 
 const Detail = (props: Props) => {
     return (
-        <div>
+        <div className='w-[848px]'>
             <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-3.jpg?v=1608884547463" alt="" />
             <div>
                 <div className='flex  mt-6'><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg><span> 20/7/2022</span></div>
                 <span><h2 className=' mt-0 pr-8 leading-[42px] py-[15px] text-left ] text-[30px] font-barlow '    >
-                    DANH MỤC TIN TỨC
+                    Dùng cốc giấy đựng cà phê nóng, thứ bạn uống đầy ắp những thứ đáng sợ này
                 </h2>
 
                     <hr className='my-3' />
                 </span>
-                <span className='my-[20px]'>
+                <span className='my-[20px] mr-5'>
                     <p> Đối với nhiều người, một ngày mới chỉ có thể khởi đầu tốt đẹp bằng một tách cà phê nóng. Nhờ cafein, bộ não dường như không thể nhận được tín hiệu "mệt mỏi", từ đó tạo cho con người ta một nguồn năng lượng. Với những người làm việc trí óc căng thẳng, một vài tách cà phê mỗi ngày đã trở thành thức uống "cứu mạng".</p>
 
                     <p> Tuy nhiên, một nghiên cứu mới được công bố trên Tạp chí Vật liệu Nguy hiểm (Journal of Hazardous Materials) đã cảnh báo rằng việc sử dụng ly giấy, cốc giấy dùng một lần trong thời gian dài để uống cà phê nóng hoặc đồ uống nóng, bao gồm cả việc ăn (đồ nóng) trong các hộp cơm dùng một lần, sẽ phải trả giá bằng sức khỏe.</p>

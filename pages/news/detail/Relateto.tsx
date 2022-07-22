@@ -6,7 +6,7 @@ const Relateto = (props: Props) => {
     return (
         <div>
             <h2 className='text-center text-[40px] font-barlow '>BÀI VIẾT LIÊN QUAN</h2>
-            <div className='grid grid-cols-3 gap-5 mt-[20px] text-center'>
+            <div className='grid grid-cols-3 gap-5 my-[20px] text-center'>
                 <div>
                     <div className='w-[363px] h-[380px] '>
                         <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[363px]  hover:w-[380px]' />
