@@ -33,17 +33,17 @@ const SigninPage = (props: Props) => {
             <div className="form-signup">
               <input
                 type="text"
-                className="mt-[20px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[20px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Email"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Mật khẩu"
               />
             </div>
-            <button className="bg-[#4d8a54] text-white mt-[17px] w-[30%] h-[40px] font-semibold">ĐĂNG NHẬP</button>
+            <button className="bg-[#4d8a54] text-white mt-[17px] w-[100%] md:w-[30%] h-[40px] font-semibold">ĐĂNG NHẬP</button>
           </form>
           <div className="pt-[20px]">
             <a href="" className="">
