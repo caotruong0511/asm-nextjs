@@ -5,8 +5,8 @@ module.exports = {
     extend: {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
+        barlow:['Barlow Condensed', 'sans-serif']
         bebas: ["UTM Bebas", "sans-serif"],
-       barlow:['Barlow Condensed', 'sans-serif']
       },
     },
   },

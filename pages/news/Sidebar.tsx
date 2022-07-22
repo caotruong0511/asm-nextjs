@@ -7,8 +7,7 @@ const Sidebar = (props: Props) => {
     return (
         <div>
             <aside>
-
-                <h2 className=' mt-0  leading-[42px] py-[15px] text-left ] text-[30px] font-barlow border-b-4 border-green-600 break-before-right  '    >
+                <h2 className=' mt-0  mr-8  leading-[42px] py-[15px] text-left ] text-[30px] font-barlow border-b-4 border-green-600 break-before-right  '    >
                     DANH MỤC TIN TỨC
                 </h2>
 
