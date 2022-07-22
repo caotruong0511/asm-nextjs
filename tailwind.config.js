@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         quicksand: ["Quicksand", "sans-serif"],
         barlow:['Barlow Condensed', 'sans-serif']
+        bebas: ["UTM Bebas", "sans-serif"],
       },
     },
   },
