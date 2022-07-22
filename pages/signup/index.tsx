@@ -32,35 +32,35 @@ const SignupPage = (props: Props) => {
             <div className="form-signup">
               <input
                 type="text"
-                className="mt-[20px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[20px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Họ"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Tên"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Email"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Số điện thoại"
               />
               <br />
               <input
                 type="text"
-                className="mt-[17px] outline-nonemt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[30%] h-[40px]"
+                className="mt-[17px] outline-nonemt-[17px] outline-none border-solid border-2 border-[#e1e1e1] w-[100%] md:w-[30%] h-[40px]"
                 placeholder="Mật khẩu"
               />
             </div>
-            <button className="bg-[#4d8a54] text-white mt-[17px] w-[30%] h-[40px] font-semibold">ĐĂNG KÝ</button>
+            <button className="bg-[#4d8a54] text-white mt-[17px] w-[100%] md:w-[30%] h-[40px] font-semibold">ĐĂNG KÝ</button>
           </form>
           <div className="login-fb pt-[50px] pb-[50px]">
             <p>Hoặc đăng nhập bằng</p>
