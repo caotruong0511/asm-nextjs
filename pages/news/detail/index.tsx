@@ -18,7 +18,7 @@ const index = (props: Props) => {
 
 
                 <main className="flex-1 min-w-0 overflow-auto ...">
-                    <Detail></Detail>
+                    <Detail ></Detail>
                 </main>
                 <nav className="w-[263px] flex-none ...">
                     <Sidebar></Sidebar>
