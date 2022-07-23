@@ -5,9 +5,9 @@ type Props = {}
 
 const Sidebar = (props: Props) => {
     return (
-        <div>
-            <aside>
-                <h2 className=' mt-0  mr-8  leading-[42px] py-[15px] text-left ] text-[30px] font-barlow border-b-4 border-green-600 break-before-right  '    >
+        <div className=''>
+            <aside className='w-full'>
+                <h2 className=' pt-0  mr-8  leading-[42px] py-[15px] text-left  text-[30px] font-barlow border-b-4 border-green-600 break-before-right  '    >
                     DANH MỤC TIN TỨC
                 </h2>
 
@@ -70,21 +70,23 @@ const Sidebar = (props: Props) => {
                 <h2 className=' mt-5 mb-7 leading-[42px] py-[15px] text-left ] text-[30px] font-barlow border-b-4 border-green-600 break-before-right  '    >
                     VỀ CHÚNG TÔI
                 </h2>
-                <img src=" https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/banner_about.jpg?1646286260817" alt="" width="263px" height="168px" />
+                <img src=" https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/banner_about.jpg?1646286260817" alt="" height="168px" className='sm:w-full w-"263px"' />
                 <p className='my-3'>Tea House được sinh ra từ niềm đam mê bất tận với lá trà Việt Nam. Chúng tôi đã không ngừng mang đến những sản phẩm trà thơm ngon, sánh đượm trong không gian thoải mái và lịch sự với mức giá hợp lý.</p>
                 <button className='mt-3 rounded-[30px] bg-green-700  px-[30px] py-[5px] font-quicksand text-white font-bold'  >Đọc tiếp</button>
             </aside>
+
+
             <aside>
                 <h2 className=' mt-10 leading-[42px] py-[15px] text-left ] text-[28px] font-barlow border-b-4 border-green-600 break-before-right  '    >
                     HÌNH ẢNH TRÀ TEA HOUSE
                 </h2>
-                <div className=' grid grid-cols-3 gap-3 mt-7 mb-7'>
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
-                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='w-[78px] h-[78px] ' />
+                <div className=' grid lg:pl-7  lg:grid-cols-3  md:grid-cols-3  md:pl-1  grid-cols-2 pl-4  py-4 gap-4'>
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
+                    <img src=" https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/pictureblog_1.jpg?1646286260817" alt="" className='md:w-[78px] md:h-[78px]  w-[247px] h-[247px]' />
 
 
                 </div>
@@ -95,6 +97,5 @@ const Sidebar = (props: Props) => {
 }
 
 export default Sidebar
-
 
 
