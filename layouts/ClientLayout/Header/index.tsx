@@ -115,7 +115,7 @@ const ClientHeader = (props: Props) => {
 
         <ul className="flex-1 items-center hidden md:flex">
           <li className="font-bold hover:text-[#4d8a54] text-[#282828] mr-3">
-            <Link href="">Trang chủ</Link>
+            <Link href="/">Trang chủ</Link>
           </li>
           <li className="font-bold hover:text-[#4d8a54] text-[#282828] mx-3">
             <Link href="">Giới thiệu</Link>
