@@ -4,7 +4,7 @@ type Props = {}
 
 const Detail = (props: Props) => {
     return (
-        <div className='w-[848px]'>
+        <div className='w-[100%]'>
             <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-3.jpg?v=1608884547463" alt="" />
             <div>
                 <div className='flex  mt-6'><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -62,8 +62,8 @@ const Detail = (props: Props) => {
                     <span className='my-5'>  BÌNH LUẬN CỦA BẠN</span>
                     <form action="">
                         <div className='flex mt-[10px] pb-[20px]'>
-                            <input type="text" className='  mr-[20px] w-[430px] h-[40px] text-sm text-gray-900 bg-white rounded-sm border border-gray-300' placeholder=' Họ và tên' />
-                            <input type="text" className='  w-[430px] h-[40px] text-sm text-gray-900 bg-white rounded-sm border border-gray-300' placeholder=' Email' />
+                            <input type="text" className='  mr-[20px] md:w-[430px] w-[50%]  h-[40px] text-sm text-gray-900 bg-white rounded-sm border border-gray-300' placeholder=' Họ và tên' />
+                            <input type="text" className='  md:w-[430px] w-[50%] h-[40px] text-sm text-gray-900 bg-white rounded-sm border border-gray-300' placeholder=' Email' />
                         </div>
                         <textarea id="message" rows={6} className="block p-2.5 w-full text-sm text-gray-900 bg-white  rounded-lg border border-gray-300 " placeholder="Your message..."></textarea>
                         <button className='mt-3 rounded-[30px] bg-green-700  px-[30px] py-[5px] font-quicksand text-white font-bold'  >GỬI THÔNG TIN</button>

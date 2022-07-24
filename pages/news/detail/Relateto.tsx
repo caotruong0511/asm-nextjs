@@ -4,12 +4,12 @@ type Props = {}
 
 const Relateto = (props: Props) => {
     return (
-        <div>
+        <div className='px-5'>
             <h2 className='text-center text-[40px] font-barlow '>BÀI VIẾT LIÊN QUAN</h2>
-            <div className='grid grid-cols-3 gap-5 my-[20px] text-center'>
-                <div>
-                    <div className='w-[363px] h-[380px] '>
-                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[363px]  hover:w-[380px]' />
+            <div className='grid md:grid-cols-3 gap-5 grid-cols-1 my-[20px] text-center'>
+                <div className='text-center'>
+                    <div className='lg:w-[363px] lg:h-[380px]  md:w-[250px] md:h-[260px] bg-slate-300'>
+                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[100%] ' />
                     </div>
                     <samp className='text-[23px] font-barlow leading-[24px] hover:text-green-700 '> Nhâm nhi cà phê bao lâu nhưng bạn tận mắt nhìn kỹ xem hạt cà phê chưa?</samp>
                     <p> </p>
@@ -17,8 +17,8 @@ const Relateto = (props: Props) => {
                 </div>
 
                 <div>
-                    <div className='w-[363px] h-[380px] '>
-                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[363px]  hover:w-[380px]' />
+                    <div className='lg:w-[363px] lg:h-[380px]  md:w-[250px] md:h-[260px] bg-slate-300'>
+                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[100%] ' />
                     </div>
                     <samp className='text-[23px] font-barlow leading-[24px] hover:text-green-700 '> Nhâm nhi cà phê bao lâu nhưng bạn tận mắt nhìn kỹ xem hạt cà phê chưa?</samp>
                     <p> </p>
@@ -26,8 +26,8 @@ const Relateto = (props: Props) => {
                 </div>
 
                 <div>
-                    <div className='w-[363px] h-[380px] '>
-                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[363px]  hover:w-[380px]' />
+                    <div className='lg:w-[363px] lg:h-[380px]  md:w-[250px] md:h-[260px] bg-slate-300'>
+                        <img src="https://bizweb.dktcdn.net/100/415/010/articles/untitled-1.jpg?v=1608884901087" alt="" className='w-[100%] ' />
                     </div>
                     <samp className='text-[23px] font-barlow leading-[24px] hover:text-green-700 '> Nhâm nhi cà phê bao lâu nhưng bạn tận mắt nhìn kỹ xem hạt cà phê chưa?</samp>
                     <p> </p>
