@@ -2,19 +2,13 @@ import React from "react";
 import Link from "next/link";
 import Sidebar from "../../pages/profile/Sidebar";
 
-type Props = {};
+type Props = {
+  children: JSX.Element;
+};
 
-const Profile = () => {
+const ProfileLayout = ({ children }: Props) => {
   return (
     <div className="container-base  ">
-      <ul className="text-[#282828] flex  flex-wrap: wrap text-[14px] font-medium leading-[24px] py-[15px] text-left">
-        <li className="hover:text-[#4d8a54] ">
-          <Link href=""> Trang chủ / </Link>
-        </li>
-        <li className="text-[#4d8a54]">
-          <Link href=""> Trang thông tin</Link>
-        </li>
-      </ul>
       <div className="mt-5 grid md:grid-cols-4 grid-cols-1">
         <div className="">
           <Sidebar></Sidebar>
@@ -27,7 +21,7 @@ const Profile = () => {
             </li>
 
             <li className="font-bold text-[14px]">
-              Email :<span className="text-green-600">aaaa</span>!
+              Email :<span className="text-green-600">aaaa</span>!{children}
             </li>
           </ul>
         </div>
@@ -36,4 +30,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default ProfileLayout;
