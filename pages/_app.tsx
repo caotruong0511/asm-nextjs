@@ -5,6 +5,9 @@ import { ClientLayout, Pro5Layout } from "../layouts";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { Provider } from "react-redux";
+import persistor, { store } from "../redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 config.autoAddCss = false;
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
@@ -17,5 +20,11 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   //     </ClientLayout>
   //   ));
 
-  return getLayout(<Component {...pageProps} />);
+  return getLayout(
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Component {...pageProps} />
+      </PersistGate>
+    </Provider>,
+  );
 }
