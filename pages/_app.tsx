@@ -9,6 +9,9 @@ import { PersistGate } from "redux-persist/integration/react";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
+import "sweetalert2/src/sweetalert2.scss";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <ClientLayout>{page}</ClientLayout>);
@@ -17,6 +20,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Component {...pageProps} />
+        <ToastContainer />
       </PersistGate>
     </Provider>,
   );
