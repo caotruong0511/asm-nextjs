@@ -15,41 +15,31 @@ const initialState: UserState = {
 export const getUsers = createAsyncThunk("user/getUsers", async () => {
   const response = await getAll();
 
-  if (response.status) {
-    return response.payload.users;
-  }
+  return response;
 });
 
 export const deleteUser = createAsyncThunk("user/deleteUser", async (id: string) => {
   const res = await remove(id);
 
-  if (res.status) {
-    return res.payload.user;
-  }
+  return res;
 });
 
 export const addUser = createAsyncThunk("user/addUser", async (user: any) => {
   const res = await add(user);
 
-  if (res.status) {
-    return res.payload.user;
-  }
+  return res;
 });
 
 export const getUser = createAsyncThunk("user/getUser", async (id: any) => {
   const res = await get(id);
 
-  if (res.status) {
-    return res.payload.user;
-  }
+  return res;
 });
 
 export const updateUser = createAsyncThunk("user/updateUser", async (user: any) => {
   const res = await update(user);
 
-  if (res.status) {
-    return res.payload.user;
-  }
+  return res;
 });
 
 const userSlice = createSlice({
