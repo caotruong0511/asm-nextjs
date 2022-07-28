@@ -74,6 +74,7 @@ const UserList = (props: Props) => {
                 <div className="ml-4">
                   <div className="text-sm font-medium text-gray-900">{item.name}</div>
                   <div className="text-sm text-gray-500">{item.email}</div>
+                  <div className="text-sm text-gray-500">{item.phone}</div>
                 </div>
               </div>
             </td>
