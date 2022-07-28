@@ -1,12 +1,43 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { ReactElement } from "react";
+import { useRouter } from "next/router";
+import React, { ReactElement, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
+import { addCateNews } from "../../../redux/cateNewsSlice";
 
 type Props = {};
 
+type Input = {
+  name: string;
+};
+
 const AddCategory: NextPageWithLayout = (props: Props) => {
+  const [preview, setPreview] = useState<string>();
+  const dispatch = useDispatch<any>();
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Input>();
+
+  const onSubmit: SubmitHandler<Input> = async (values: Input) => {
+    try {
+      console.log(values);
+      await dispatch(addCateNews(values)).unwrap();
+      toast.success("Thêm thành công");
+      reset();
+      setPreview("");
+      router.push("/admin/category");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
@@ -30,7 +61,7 @@ const AddCategory: NextPageWithLayout = (props: Props) => {
       </header>
 
       <div className="p-6 mt-24 overflow-hidden">
-        <form action="" method="POST" id="form__add-cate">
+        <form action="" method="POST" id="form__add-cate" onSubmit={handleSubmit(onSubmit)}>
           <div className="shadow overflow-hidden sm:rounded-md">
             <div className="px-4 py-5 bg-white sm:p-6">
               <span className="font-semibold mb-4 block text-xl">Thông tin chi tiết danh mục:</span>
@@ -41,57 +72,12 @@ const AddCategory: NextPageWithLayout = (props: Props) => {
                   </label>
                   <input
                     type="text"
+                    {...register("name", { required: "Vui lòng nhập tên danh mục" })}
                     id="form__add-cate-title"
                     className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                     placeholder="Nhập tiêu đề bài viết"
                   />
-                  <div className="error-image text-sm mt-0.5 text-red-500">Error</div>
-                </div>
-
-                <div className="col-span-3">
-                  <label className="block text-sm font-medium text-gray-700">Xem trước ảnh danh mục</label>
-                  <div className="mt-1">
-                    <div className="h-60 w-full relative rounded-md">
-                      <Image
-                        src="https://bizweb.dktcdn.net/thumb/large/100/415/010/themes/844269/assets/picture_2.jpg?1646286260817"
-                        layout="fill"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-span-6">
-                  <label className="block text-sm font-medium text-gray-700">Ảnh danh mục</label>
-                  <div className="w-full mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div className="space-y-1 text-center">
-                      <svg
-                        className="mx-auto h-12 w-12 text-gray-400"
-                        stroke="currentColor"
-                        fill="none"
-                        viewBox="0 0 48 48"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <div className="flex text-sm text-gray-600">
-                        <label
-                          htmlFor="form__add-cate-img"
-                          className="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                        >
-                          <span>Upload a file</span>
-                          <input id="form__add-cate-img" type="file" className="sr-only" />
-                        </label>
-                        <p className="pl-1">or drag and drop</p>
-                      </div>
-                      <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                    </div>
-                  </div>
-                  <div className="error-image text-sm mt-0.5 text-red-500">Error</div>
+                  <div className="error-image text-sm mt-0.5 text-red-500">{errors.name?.message}</div>
                 </div>
               </div>
             </div>

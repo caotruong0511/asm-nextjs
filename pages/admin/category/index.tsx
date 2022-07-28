@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React, { ReactElement } from "react";
+import NewsList from "../../../components/admin/NewsList";
 import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
 
@@ -29,60 +30,8 @@ const CategoryManager: NextPageWithLayout = (props: Props) => {
         <div className="flex flex-col">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200" id="cate__list-table">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        STT
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        ID
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Name
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    <tr className="cate__list-item-${cate.id}">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">123</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                        <Link href={`/danh-muc/`} className="hover:underline">
-                          Name
-                        </Link>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <Link
-                          href={`/admin/category/123/edit`}
-                          className="h-8 inline-flex items-center px-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Edit
-                        </Link>
-                        <button className="cate__list-btn-delete h-8 inline-flex items-center px-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+              <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"></div>
+              <NewsList />
             </div>
           </div>
         </div>
