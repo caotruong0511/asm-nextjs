@@ -11,7 +11,6 @@ type Props = {};
 
 const UserList = (props: Props) => {
   const users = useSelector((state: RootState) => state.user.users);
-  console.log(users);
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
