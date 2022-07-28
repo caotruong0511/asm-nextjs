@@ -1,23 +1,24 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Swal from "sweetalert2";
-import { deleteCateNews, getCateNews } from "../../redux/cateNewsSlice";
 import { RootState } from "../../redux/store";
+import { getNews, deleteNews } from "../../redux/newsSlice";
+import Swal from "sweetalert2";
+import Image from "next/image";
 
 type Props = {};
 
-const NewsList = (props: Props) => {
-  const news = useSelector((state: RootState) => state.new.news);
+const NewList = (props: Props) => {
+  const news = useSelector((state: RootState) => state.news.news);
   const dispatch = useDispatch<any>();
 
   useEffect(() => {
-    dispatch(getCateNews());
+    dispatch(getNews());
   }, [dispatch]);
 
   const handleRemove = (id: any) => {
     Swal.fire({
-      title: "Bạn có chắc chắn muốn xóa không ?",
+      title: "Bạn có chắc chắn muốn xóa không?",
       text: "Không thể hoàn tác sau khi xóa",
       icon: "warning",
       showCancelButton: true,
@@ -26,12 +27,11 @@ const NewsList = (props: Props) => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await dispatch(deleteCateNews(id)).unwrap();
-        Swal.fire("Thành công!", "Xoá thành công", "success");
+        await dispatch(deleteNews(id)).unwrap();
+        Swal.fire("Thành công!", "Xóa thành công.", "success");
       }
     });
   };
-
   return (
     <table className="min-w-full divide-y divide-gray-200" id="cate__list-table">
       <thead className="bg-gray-50">
@@ -40,7 +40,16 @@ const NewsList = (props: Props) => {
             STT
           </th>
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            Name
+            Title
+          </th>
+          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Thumbnail
+          </th>
+          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Description
+          </th>
+          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Content
           </th>
         </tr>
       </thead>
@@ -50,12 +59,17 @@ const NewsList = (props: Props) => {
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{++index}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
               <Link href={`/danh-muc/`} className="hover:underline">
-                {item.name}
+                {item.title}
               </Link>
             </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 w-12 h-12 relative object-cover">
+              {item.thumbnail && <Image src={item.thumbnail} layout="fill" alt="" className=" object-cover" />}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.desc}</td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.content}</td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <Link
-                href={`/admin/category/${item._id}/edit`}
+                href={`/admin/news/${item._id}/edit`}
                 className="h-8 inline-flex items-center px-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Edit
@@ -74,4 +88,4 @@ const NewsList = (props: Props) => {
   );
 };
 
-export default NewsList;
+export default NewList;

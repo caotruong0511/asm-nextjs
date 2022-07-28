@@ -3,13 +3,13 @@ import { add, get, getAll, remove, update } from "../api-client/cateNewsApi";
 import { CategoryNews } from "../models/categoryNews";
 
 type NewsState = {
-  news: CategoryNews[];
-  new: CategoryNews | {};
+  cateNews: CategoryNews[];
+  cateNew: CategoryNews | {};
 };
 
 const initialState: NewsState = {
-  news: [],
-  new: {},
+  cateNews: [],
+  cateNew: {},
 };
 
 export const getCateNews = createAsyncThunk("categoryNews/getNews", async () => {
@@ -45,23 +45,23 @@ const newsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getCateNews.fulfilled, (state, { payload }) => {
-      state.news = payload as any;
+      state.cateNews = payload as any;
     });
 
     builder.addCase(deleteCateNews.fulfilled, (state, { payload }) => {
-      state.news = state.news.filter((item) => item._id !== payload?._id);
+      state.cateNews = state.cateNews.filter((item) => item._id !== payload?._id);
     });
 
     builder.addCase(addCateNews.fulfilled, (state, { payload }) => {
-      state.news.push(payload as CategoryNews);
+      state.cateNews.push(payload as CategoryNews);
     });
 
     builder.addCase(getCateNew.fulfilled, (state, { payload }) => {
-      state.new = payload as CategoryNews;
+      state.cateNew = payload as CategoryNews;
     });
 
     builder.addCase(updateCateNews.fulfilled, (state, { payload }) => {
-      state.news = state.news = state.news.map((item) =>
+      state.cateNews = state.cateNews = state.cateNews.map((item) =>
         item._id === payload?._id ? payload : item,
       ) as CategoryNews[];
     });
