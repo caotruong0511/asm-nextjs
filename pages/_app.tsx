@@ -16,12 +16,16 @@ import { ToastContainer } from "react-toastify";
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => <ClientLayout>{page}</ClientLayout>);
 
-  return getLayout(
+  return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Component {...pageProps} />
-        <ToastContainer />
+        {getLayout(
+          <>
+            <Component {...pageProps} />
+            <ToastContainer />
+          </>,
+        )}
       </PersistGate>
-    </Provider>,
+    </Provider>
   );
 }
