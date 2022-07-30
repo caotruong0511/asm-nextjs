@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import build from "next/dist/build";
-import { add, get, getAll, remove, update } from "../api-client/slide";
-import { Silde } from "../models/slide";
+import { add, get, getAll, remove, update } from "../api-client/slider";
+import { Slider } from "../models/slider";
 type SliddeState = {
-  slides: Silde[];
-  slide: Silde | {};
+  slides: Slider[];
+  slide: Slider | {};
 };
 
 const initialState: SliddeState = {
@@ -55,15 +55,17 @@ const slideSlide = createSlice({
     });
 
     builder.addCase(addSlide.fulfilled, (state, { payload }) => {
-      state.slides.push(payload as Silde);
+      state.slides.push(payload as Slider);
     });
 
     builder.addCase(getSlide.fulfilled, (state, { payload }) => {
-      state.slide = payload as Silde;
+      state.slide = payload as Slider;
     });
 
     builder.addCase(updateSlide.fulfilled, (state, { payload }) => {
-      state.slides = state.slides = state.slides.map((item) => (item._id === payload?._id ? payload : item)) as Silde[];
+      state.slides = state.slides = state.slides.map((item) =>
+        item._id === payload?._id ? payload : item,
+      ) as Slider[];
     });
   },
 });
