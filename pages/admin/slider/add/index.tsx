@@ -16,6 +16,7 @@ type Props = {};
 type Inputs = {
   image: { 0: File };
   url: string;
+  title: string;
 };
 const add: NextPageWithLayout = (props: Props) => {
   const [preview, setPreview] = useState<string>();
@@ -43,24 +44,50 @@ const add: NextPageWithLayout = (props: Props) => {
   };
 
   return (
-    <div className="mt-[150px]">
+    <div className="mt-[150px] mx-3">
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">
-            Users
+            Slider
           </h5>
-          <span>Add User</span>
+          <span>Add Slider</span>
         </div>
-        <Link href="/admin/user">
+        <Link href="/admin/slider">
           <button
             type="button"
             className="inline-flex items-center px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            DS User
+            DS Slider
           </button>
         </Link>
       </header>
       <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
+        <div className="col-span-6 md:col-span-3">
+          <label htmlFor="form__add-sldier-title" className="block text-sm font-medium text-gray-700">
+            title
+          </label>
+          <input
+            type="text"
+            {...register("title", { required: "Vui lòng nhập số title" })}
+            id="form__add-sldier-title"
+            className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            placeholder="Nhập Title"
+          />
+          <div className="text-sm mt-0.5 text-red-500">{errors.title?.message}</div>
+        </div>
+        <div className="col-span-6 md:col-span-3">
+          <label htmlFor="form__add-user-phone" className="block text-sm font-medium text-gray-700">
+            Link
+          </label>
+          <input
+            type="text"
+            {...register("url", { required: "Vui lòng nhập Linki" })}
+            id="form__add-user-phone"
+            className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            placeholder="Nhập Linki"
+          />
+          <div className="text-sm mt-0.5 text-red-500">{errors.url?.message}</div>
+        </div>
         <div className="col-span-3">
           <label className="block text-sm font-medium text-gray-700">Xem trước ảnh</label>
           <div className="mt-1 w-40 h-40 relative">
@@ -70,13 +97,13 @@ const add: NextPageWithLayout = (props: Props) => {
                 "https://res.cloudinary.com/levantuan/image/upload/v1644302455/assignment-js/thumbnail-image-vector-graphic-vector-id1147544807_ochvyr.jpg"
               }
               alt="Preview Image"
-              className="h-40 w-40 rounded-full object-cover"
+              className="h-40 w-40 "
               layout="fill"
             />
           </div>
         </div>
         <div className="col-span-6">
-          <label className="block text-sm font-medium text-gray-700">Ảnh đại diện</label>
+          <label className="block text-sm font-medium text-gray-700">Ảnh </label>
           <div className="w-full mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
             <div className="space-y-1 text-center">
               <svg
