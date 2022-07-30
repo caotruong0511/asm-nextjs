@@ -64,13 +64,7 @@ const productSlice = createSlice({
         build.addCase(updateproduct.fulfilled,(state,{payload})=>{
             state.products=state.products=state.products.map((item)=>(item._id === payload?._id ? payload :item)) as Product[]
          })
-        // builder.addCase(getUser.fulfilled, (state, { payload }) => {
-        //     state.user = payload as User;
-        //   });
-      
-        //   builder.addCase(updateUser.fulfilled, (state, { payload }) => {
-        //     state.users = state.users = state.users.map((item) => (item._id === payload?._id ? payload : item)) as User[];
-        //   });
+    
         
     }
 })

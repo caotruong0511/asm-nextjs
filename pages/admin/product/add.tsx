@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
 import { toast } from "react-toastify";
 import { uploadImage } from "../../../utils";
 import { addProduct } from "../../../redux/productSlice";
+import { getcateProduct, getone } from "../../../redux/cateProductSlice";
+import { RootState } from "../../../redux/store";
 type Props = {};
 
 type Inputs = {
@@ -21,6 +23,7 @@ type Inputs = {
 };
 
 const Add: NextPageWithLayout = (props: Props) => {
+  const cateProducts= useSelector((state:RootState)=>state.cateproduct.cateProducts)
   const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
 
@@ -30,6 +33,11 @@ const Add: NextPageWithLayout = (props: Props) => {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
+
+  useEffect(()=>{
+     dispatch(getcateProduct())
+  },[dispatch])
+ console.log(cateProducts);
  
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
@@ -84,22 +92,25 @@ const Add: NextPageWithLayout = (props: Props) => {
                   <div className="text-sm mt-0.5 text-red-500">{errors.name?.message}</div>
                 </div>
 
-                {/* <div className="col-span-6 md:col-span-3">
+                <div className="col-span-6 md:col-span-3">
                   <label htmlFor="form__add-user-role" className="block text-sm font-medium text-gray-700">
-                    Vai trò
+                    Danh mục
                   </label>
                   <select
                     id="form__add-user-role"
-                    {...register("role", { required: "Vui lòng chọn vai trò" })}
+                    {...register("catygoryId", { required: "Vui lòng chọn danh mục" })}
                     defaultValue={0}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option value="">-- Chọn vai trò --</option>
-                    <option value={0}>Khách hàng</option>
-                    <option value={1}>Admin</option>
+                    {cateProducts?.map((e,index)=>
+                    <>
+                    <option  value={e._id}>{e.name}</option>
+                    </>
+                    )}
                   </select>
-                  <div className="text-sm mt-0.5 text-red-500">{errors.role?.message}</div>
-                </div> */}
+                  <div className="text-sm mt-0.5 text-red-500">{errors.catygoryId?.message}</div>
+                </div>
 
                 <div className="col-span-6 md:col-span-3">
                   <label htmlFor="form__add-user-phone" className="block text-sm font-medium text-gray-700">
@@ -127,20 +138,6 @@ const Add: NextPageWithLayout = (props: Props) => {
                     placeholder="Nhập mô tả"
                   />
                   <div className="text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
-                </div>
-
-                <div className="col-span-6">
-                  <label htmlFor="form__add-user-password" className="block text-sm font-medium text-gray-700">
-                    Danh mục
-                  </label>
-                  <input
-                    type="text"
-                    {...register("catygoryId", { required: "Vui lòng nhập danh mục" })}
-                    id="form__add-user-password"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    placeholder="Nhập danh mục"
-                  />
-                  <div className="text-sm mt-0.5 text-red-500">{errors.catygoryId?.message}</div>
                 </div>
 
                 <div className="col-span-3">
