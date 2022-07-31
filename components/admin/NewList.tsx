@@ -45,12 +45,12 @@ const NewList = (props: Props) => {
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Thumbnail
           </th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+          {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Description
           </th>
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Content
-          </th>
+          </th> */}
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
@@ -65,8 +65,7 @@ const NewList = (props: Props) => {
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 w-12 h-12 relative object-cover">
               {item.thumbnail && <Image src={item.thumbnail} layout="fill" alt="" className=" object-cover" />}
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.desc}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{item.content}</td>
+
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <Link
                 href={`/admin/news/${item._id}/edit`}
