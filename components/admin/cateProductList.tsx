@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import {getproduct, removeproduct} from "../../redux/productSlice"
+import {getcateProduct, removecateProduct} from "../../redux/cateProductSlice"
 import Link from 'next/link'
 import Image from 'next/image'
 import Swal from 'sweetalert2'
 type Props = {}
 
-const ProductList = (props: Props) => {
-  const product= useSelector((state:RootState)=>state.product.products)
+const CateProductList = (props: Props) => {
+  const cateProduct= useSelector((state:RootState)=>state.cateproduct.cateProducts)
   const dispatch  = useDispatch<any>();
-  console.log(product);
-  
   useEffect(()=>{
-    dispatch(getproduct())
+    dispatch(getcateProduct())
   },[dispatch])
-  console.log(product);
+  console.log(cateProduct);
 
   const handleRemove=(id:any)=>{
     Swal.fire({
@@ -28,7 +26,7 @@ const ProductList = (props: Props) => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await dispatch(removeproduct(id)).unwrap();
+        await dispatch(removecateProduct(id)).unwrap();
         Swal.fire("Thành công!", "Xóa thành công.", "success");
       }
     });
@@ -50,22 +48,10 @@ const ProductList = (props: Props) => {
             {" "}
             Image{" "}
           </th>
-          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-            {" "}
-            Price{" "}
-          </th>
-          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-            {" "}
-            Description{" "}
-          </th>
-          <th scope="col" className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-            {" "}
-            CatygoryId{" "}
-          </th>
         </tr>
       </thead>
       <tbody className="bg-white divide-y divide-gray-200">
-        {product?.map((item, index) => (
+        {cateProduct?.map((item, index) => (
           <tr key={index}>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{++index}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.name}</td>
@@ -79,12 +65,9 @@ const ProductList = (props: Props) => {
 
               </div>
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.price}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.desc}</td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.catygoryId.name}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">{}</td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <Link href={`/admin/product/${item._id}`}>
+              <Link href={`/admin/cateproduct/${item._id}`}>
                 <span className="h-8 inline-flex items-center px-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   Edit
                 </span>
@@ -104,4 +87,4 @@ const ProductList = (props: Props) => {
   )
 }
 
-export default ProductList
+export default CateProductList

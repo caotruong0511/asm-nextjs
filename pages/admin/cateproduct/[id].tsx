@@ -1,52 +1,44 @@
-import Image from "next/image";
 import Link from "next/link";
 import React, { ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
 import { toast } from "react-toastify";
 import { uploadImage } from "../../../utils";
-import {  getone, updateproduct } from "../../../redux/productSlice";
+import Image from "next/image";
+import { type } from "os";
+import { addCateProduct, getone, updateCateProduct } from "../../../redux/cateProductSlice";
 import { useRouter } from "next/router";
-import { get } from "../../../api-client/productApi";
-import { getcateProduct } from "../../../redux/cateProductSlice";
-import { RootState } from "../../../redux/store";
-type Props = {};
 
-type Inputs = {
+type Props = {};
+type cateProduct = {
   name: string;
-  price: string;
-  desc: string;
-  catygoryId: string;
   image: {
     0: File;
   };
 };
-
-const ProductEdit: NextPageWithLayout = (props: Props) => {
-  const [preview, setPreview] = useState<string>();
-  const cateProducts= useSelector((state:RootState)=>state.cateproduct.cateProducts)
+const EditCateProduct: NextPageWithLayout = (props: Props) => {
+    const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
-  console.log(cateProducts);
   
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<Inputs>();
+  } = useForm<cateProduct>();
 
-  const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
+  const onSubmit: SubmitHandler<cateProduct> = async (values: cateProduct) => {
     try {
       const { data } = await uploadImage(values.image[0]);
       values.image = data.url;
 
-      await dispatch(updateproduct(values)).unwrap();
+      await dispatch(updateCateProduct(values)).unwrap();
       toast.success("Cập nhật thành công");
-      router.push("/admin/product");
+      router.push("/admin/cateproduct");
       reset();
       setPreview("");
     } catch (error) {
@@ -55,19 +47,16 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   };
   useEffect(() => {
     (async () => {
-      console.log(id);
-      
-      const product = await dispatch(getone(id)).unwrap();
-      
-     const cate= await   dispatch(getcateProduct())
-    
-    console.log(cateProducts);
-      reset(product);
-      setPreview(product.image);
-    })()
-    
-  }, [dispatch, id, reset]);
-
+  console.log(id);
+     
+        const {cateproduct}=  await dispatch(getone(id)).unwrap();
+        console.log(cateproduct);
+        
+        reset(cateproduct);
+        setPreview(cateproduct.image);
+     
+    })();
+  }, [dispatch,id, reset]);
   return (
     <>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
@@ -77,12 +66,12 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
           </h5>
           <span>Add Product</span>
         </div>
-        <Link href="/admin/product">
+        <Link href="/admin/cateproduct">
           <button
             type="button"
             className="inline-flex items-center px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            DS Product
+            DS cateProduct
           </button>
         </Link>
       </header>
@@ -107,54 +96,22 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                   <div className="text-sm mt-0.5 text-red-500">{errors.name?.message}</div>
                 </div>
 
-                <div className="col-span-6 md:col-span-3">
-                  <label htmlFor="form__add-user-role" className="block text-sm font-medium text-gray-700">
-                    Danh mục
-                  </label>
-                  <select
-                    id="form__add-user-role"
-                    {...register("catygoryId", { required: "Vui lòng chọn danh mục" })}
-                    defaultValue={0}
-                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  >
-                    <option value="">-- Chọn vai trò --</option>
-                    {cateProducts?.map((e,index)=>
-                    <>
-                    <option  value={e._id}>{e.name}</option>
-                    </>
-                    )}
-                  </select>
-                  <div className="text-sm mt-0.5 text-red-500">{errors.catygoryId?.message}</div>
-                </div>
-
-                <div className="col-span-6 md:col-span-3">
-                  <label htmlFor="form__add-user-phone" className="block text-sm font-medium text-gray-700">
-                    Giá sản phẩm
-                  </label>
-                  <input
-                    type="text"
-                    {...register("price", { required: "Vui lòng nhập giá" })}
-                    id="form__add-user-phone"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    placeholder="Nhập giá"
-                  />
-                  <div className="text-sm mt-0.5 text-red-500">{errors.price?.message}</div>
-                </div>
-
-                <div className="col-span-6">
-                  <label htmlFor="form__add-user-email" className="block text-sm font-medium text-gray-700">
-                    Mô tả
-                  </label>
-                  <input
-                    {...register("desc", { required: "Vui lòng nhập mô tả" })}
-                    type="text"
-                    id="form__add-user-email"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                    placeholder="Nhập mô tả"
-                  />
-                  <div className="text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
-                </div>
-
+                {/* <div className="col-span-6 md:col-span-3">
+                <label htmlFor="form__add-user-role" className="block text-sm font-medium text-gray-700">
+                  Vai trò
+                </label>
+                <select
+                  id="form__add-user-role"
+                  {...register("role", { required: "Vui lòng chọn vai trò" })}
+                  defaultValue={0}
+                  className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                >
+                  <option value="">-- Chọn vai trò --</option>
+                  <option value={0}>Khách hàng</option>
+                  <option value={1}>Admin</option>
+                </select>
+                <div className="text-sm mt-0.5 text-red-500">{errors.role?.message}</div>
+              </div> */}
 
                 <div className="col-span-3">
                   <label className="block text-sm font-medium text-gray-700">Xem trước ảnh</label>
@@ -219,7 +176,7 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 {" "}
-                Cập nhật sản phẩm{" "}
+                Cập nhật{" "}
               </button>
             </div>
           </div>
@@ -228,5 +185,6 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
     </>
   );
 };
-ProductEdit.getLayout = (page: ReactElement) => <AdminLayout>{page}</AdminLayout>;
-export default ProductEdit;
+EditCateProduct.getLayout = (page: ReactElement) => <AdminLayout>{page}</AdminLayout>;
+
+export default EditCateProduct;
