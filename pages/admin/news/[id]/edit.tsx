@@ -111,7 +111,7 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
                         >
                           <span>Upload a file</span>
                           <input
-                            {...register("thumbnail", { required: "Vui lòng chọn ảnh" })}
+                            {...register("thumbnail")}
                             onChange={(e: any) => {
                               setPreview(URL.createObjectURL(e.target.files[0]));
                             }}
