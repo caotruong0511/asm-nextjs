@@ -1,8 +1,8 @@
 import { News } from "../models/news";
-import axiosClient from "./config";
+import axiosClient, { axiosServer } from "./config";
 
 export const getAll = (): Promise<News> => {
-  return axiosClient.get("/news");
+  return axiosServer.get("/news");
 };
 
 export const remove = (id: string): Promise<News> => {
