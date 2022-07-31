@@ -1,8 +1,8 @@
 import { Slider } from "../models/slider";
-import axiosClient from "./config";
+import axiosClient, { axiosServer } from "./config";
 
 export const getAll = (): Promise<Slider[]> => {
-  return axiosClient.get("/slider");
+  return axiosServer.get("/slider");
 };
 
 export const remove = (id: string): Promise<Slider> => {

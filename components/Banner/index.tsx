@@ -4,10 +4,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import React from "react";
 import SliderArrow from "../SliderArrow";
+import { Slider as TypeSlider } from "../../models/slider";
 
-type Props = {};
+type HomeBannerProps = {
+  sliders: TypeSlider[];
+};
 
-const HomeBanner = (props: Props) => {
+const HomeBanner = ({ sliders }: HomeBannerProps) => {
   const settings = {
     autoplay: true,
     infinite: true,
@@ -19,31 +22,20 @@ const HomeBanner = (props: Props) => {
     <section>
       <ul id="banner" className="relative group">
         <Slider {...settings}>
-          <li>
-            <a
-              href={""}
-              title={"title"}
-              style={{
-                backgroundImage: `url(https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/slider_1.jpg?1646286260817)`,
-              }}
-              className="block pt-[35%] bg-center bg-cover bg-no-repeat"
-              target="_blank"
-              rel="noreferrer"
-            />
-          </li>
-
-          <li>
-            <a
-              href={""}
-              title={"title"}
-              style={{
-                backgroundImage: `url(https://res.cloudinary.com/levantuan/image/upload/v1644757540/assignment-js/bcrpldnvh7gqp8bsmpp4.jpg)`,
-              }}
-              className="block pt-[35%] bg-center bg-cover bg-no-repeat"
-              target="_blank"
-              rel="noreferrer"
-            />
-          </li>
+          {sliders?.map((item, index) => (
+            <li key={index}>
+              <a
+                href={item.url}
+                title={item.title}
+                style={{
+                  backgroundImage: `url(${item.image})`,
+                }}
+                className="block pt-[35%] bg-center bg-cover bg-no-repeat"
+                target="_blank"
+                rel="noreferrer"
+              />
+            </li>
+          ))}
         </Slider>
       </ul>
     </section>

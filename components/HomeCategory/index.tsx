@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Slider from "react-slick";
+import { CateProduct } from "../../models/cateProduct";
 import SliderArrow from "../SliderArrow";
 
-type Props = {};
+type HomeCategoryProps = {
+  listCategory: CateProduct[];
+};
 
-const HomeCategory = (props: Props) => {
+const HomeCategory = ({ listCategory }: HomeCategoryProps) => {
   const settings = {
     autoplay: true,
     infinite: true,
@@ -35,85 +38,17 @@ const HomeCategory = (props: Props) => {
       <h2 className="uppercase font-bebas text-4xl text-normal text-center">Danh mục sản phẩm</h2>
 
       <Slider {...settings} className="group">
-        <li className="cursor-pointer my-8">
-          <Link href="/hehe">
-            <div className="text-center">
-              <Image
-                src="https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/sec_category_1.jpg?1646286260817"
-                alt=""
-                width={235}
-                height={160}
-                className="object-cover"
-              />
+        {listCategory?.map((item, index) => (
+          <li className="cursor-pointer my-8" key={index}>
+            <Link href="/hehe">
+              <div className="text-center">
+                <Image src={item.image} alt="" width={235} height={160} className="object-cover" />
 
-              <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">Trà nóng</h3>
-            </div>
-          </Link>
-        </li>
-
-        <li className="cursor-pointer my-8">
-          <Link href="/hehe">
-            <div className="text-center">
-              <Image
-                src="https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/sec_category_1.jpg?1646286260817"
-                alt=""
-                width={235}
-                height={160}
-                className="object-cover"
-              />
-
-              <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">Trà nóng</h3>
-            </div>
-          </Link>
-        </li>
-
-        <li className="cursor-pointer my-8">
-          <Link href="/hehe">
-            <div className="text-center">
-              <Image
-                src="https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/sec_category_1.jpg?1646286260817"
-                alt=""
-                width={235}
-                height={160}
-                className="object-cover"
-              />
-
-              <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">Trà nóng</h3>
-            </div>
-          </Link>
-        </li>
-
-        <li className="cursor-pointer my-8">
-          <Link href="/hehe">
-            <div className="text-center">
-              <Image
-                src="https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/sec_category_1.jpg?1646286260817"
-                alt=""
-                width={235}
-                height={160}
-                className="object-cover"
-              />
-
-              <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">Trà nóng</h3>
-            </div>
-          </Link>
-        </li>
-
-        <li className="cursor-pointer my-8">
-          <Link href="/hehe">
-            <div className="text-center">
-              <Image
-                src="https://bizweb.dktcdn.net/100/415/010/themes/844269/assets/sec_category_1.jpg?1646286260817"
-                alt=""
-                width={235}
-                height={160}
-                className="object-cover"
-              />
-
-              <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">Trà nóng</h3>
-            </div>
-          </Link>
-        </li>
+                <h3 className="font-bold text-2xl text-normal py-2 hover:text-[#4d8a54] transition">{item.name}</h3>
+              </div>
+            </Link>
+          </li>
+        ))}
       </Slider>
     </section>
   );

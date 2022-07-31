@@ -19,3 +19,8 @@ export const uploadImage = (image: any): any => {
 
   return axios.post("https://api.cloudinary.com/v1_1/levantuan/image/upload", formData);
 };
+
+export const formatCurrency = (currency: number) => {
+  const tempCurrency = +currency;
+  return tempCurrency.toLocaleString("it-IT", { style: "currency", currency: "VND" });
+};
