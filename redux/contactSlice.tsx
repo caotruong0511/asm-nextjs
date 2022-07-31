@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { start } from "repl";
-import { getAll, remove } from "../api-client/contactApi";
+import { getAll, remove, add } from "../api-client/contactApi";
 import { Contact } from "../models/contact";
 type ContactState = {
   contact: Contact[];
@@ -10,6 +10,10 @@ const initialState: ContactState = {
 };
 export const getContact = createAsyncThunk("contact/", async () => {
   const res = await getAll();
+  return res;
+});
+export const addContact = createAsyncThunk("contact/add", async (values: Contact) => {
+  const res = await add(values);
   return res;
 });
 
@@ -24,6 +28,9 @@ const contactSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getContact.fulfilled, (state, { payload }) => {
       state.contact = payload || [];
+    });
+    builder.addCase(addContact.fulfilled, (state, { payload }) => {
+      state.contact.push(payload as Contact);
     });
     builder.addCase(getContactDel.fulfilled, (state, { payload }) => {
       state.contact = state.contact.filter((item) => item._id !== payload?._id);
