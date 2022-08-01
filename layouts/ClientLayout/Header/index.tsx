@@ -11,9 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { User } from "../../../models/users";
+import { getcateProduct } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
 
 type Props = {};
@@ -22,6 +23,18 @@ const ClientHeader = (props: Props) => {
   const isLogged = useSelector((state: RootState) => state.auth.isLogged);
   const curentUser = useSelector((state: RootState) => state.auth.currentUser) as User;
   const router = useRouter();
+  const cateProduct = useSelector((state: RootState) => state.cateproduct.cateProducts);
+  const dispatch = useDispatch<any>();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await dispatch(getcateProduct()).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <header className="border-b">
@@ -158,18 +171,11 @@ const ClientHeader = (props: Props) => {
             </Link>
 
             <ul className="bg-white hidden group-hover:block absolute top-full left-0 shadow px-2 py-1 z-[50] divide-y min-w-[150px]">
-              <li className="text-[#282828] text-sm py-1.5 font-semibold hover:text-[#4d8a54]">
-                <Link href="">Cà phê</Link>
-              </li>
-              <li className="text-[#282828] text-sm py-1.5 font-semibold hover:text-[#4d8a54]">
-                <Link href="">Bánh ngọt</Link>
-              </li>
-              <li className="text-[#282828] text-sm py-1.5 font-semibold hover:text-[#4d8a54]">
-                <Link href="">Bánh ngọt</Link>
-              </li>
-              <li className="text-[#282828] text-sm py-1.5 font-semibold hover:text-[#4d8a54]">
-                <Link href="">Bánh ngọt</Link>
-              </li>
+              {cateProduct?.map((item, index) => (
+                <li key={index} className="text-[#282828] text-sm py-1.5 font-semibold hover:text-[#4d8a54]">
+                  <Link href="">{item.name}</Link>
+                </li>
+              ))}
             </ul>
           </li>
         </ul>

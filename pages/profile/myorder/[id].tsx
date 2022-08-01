@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import Sidebar from "../Sidebar";
-import { isContext } from "vm";
+import Sidebar from "../../../components/SidebarProfile/Sidebar";
+import Image from "next/image";
 type Props = {};
 
 const Detailorder = (props: Props) => {
@@ -25,11 +25,11 @@ const Detailorder = (props: Props) => {
               CHI TIẾT ĐƠN HÀNG <span>1</span>
             </p>
             <p>
-              Ngày Tạo: <span>11/11/1111</span>
+              Ngày tạo: <span>11/11/1111</span>
             </p>
           </div>
           <div className="grid md:grid-cols-3 grid-cols-1 my-4">
-            <div className="col-span-2 :">
+            <div className="col-span-2">
               <p className="md:text-[19px] text-[16px]">ĐỊA CHỈ GIAO HÀNG</p>
               <div className="border-[1px] text-[14px] pl-2 mr-4 h-[90px]">
                 <p>
@@ -46,9 +46,9 @@ const Detailorder = (props: Props) => {
                 </p>
               </div>
             </div>
-            <div>
-              <p className="md:text-[19px] text-[16px]">Ghi Chú</p>
-              <div className="border-[1px] text-[14px] pl-2 mr-4">ádasdas </div>
+            <div className="flex flex-col">
+              <p className="md:text-[19px] text-[16px] uppercase">Ghi Chú</p>
+              <div className="border-[1px] text-[14px] pl-2 mr-4 flex-1">ádasdas</div>
             </div>
           </div>
 
@@ -72,9 +72,15 @@ const Detailorder = (props: Props) => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white ">
+                <tr className="bg-white">
                   <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                    <img src="ấdasdsa" className="w-[55px] h-[70px]" />
+                    <div className="w-24 h-24 relative">
+                      <Image
+                        src="https://bizweb.dktcdn.net/thumb/large/100/415/010/products/10-a1db977e-32af-492b-8ae1-c3638939b4a7.jpg?v=1608871257547"
+                        layout="fill"
+                        alt=""
+                      />
+                    </div>
                   </th>
                   <td className="">SliverSliverSliverSliverSliver</td>
                   <td className="py-4 px-6">300</td>
@@ -84,7 +90,13 @@ const Detailorder = (props: Props) => {
 
                 <tr className="bg-white ">
                   <th scope="row" className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                    <img src="ấdasdsa" className="w-[55px] h-[70px]" />
+                    <div className="w-24 h-24 relative">
+                      <Image
+                        src="https://bizweb.dktcdn.net/thumb/large/100/415/010/products/10-a1db977e-32af-492b-8ae1-c3638939b4a7.jpg?v=1608871257547"
+                        layout="fill"
+                        alt=""
+                      />
+                    </div>
                   </th>
                   <td className="">SliverSliverSliverSliverSliver</td>
                   <td className="py-4 px-6">300</td>
