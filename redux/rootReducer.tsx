@@ -5,8 +5,9 @@ import newsReducer from "./newsSlice";
 import contactReducer from "./contactSlice";
 import authReducer from "./authSlice";
 import slideReducer from "./slide";
-import productReducer from "./productSlice"
-import cateproductReducer from "./cateProductSlice"
+import productReducer from "./productSlice";
+import commentReducer from "./cmtSlice";
+import cateproductReducer from "./cateProductSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -15,9 +16,9 @@ const rootReducer = combineReducers({
   auth: authReducer,
   contact: contactReducer,
   slide: slideReducer,
-  product:productReducer,
-  cateproduct:cateproductReducer
- 
+  product: productReducer,
+  cateproduct: cateproductReducer,
+  comment: commentReducer,
 });
 
 export default rootReducer;
