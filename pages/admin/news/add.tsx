@@ -121,13 +121,14 @@ const AddNews: NextPageWithLayout = (props: Props) => {
                   <label htmlFor="form__add-cate-title" className="block text-sm font-medium text-gray-700">
                     Mô tả
                   </label>
-                  <input
-                    type="text"
+                  <textarea
+                    id=""
                     {...register("desc", { required: "Vui lòng nhập đầy đủ" })}
-                    id="form__add-cate-title"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    cols={30}
+                    rows={10}
                     placeholder="Nhập mô tả"
-                  />
+                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  ></textarea>
                   <div className="error-image text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
                 </div>
 
@@ -135,13 +136,14 @@ const AddNews: NextPageWithLayout = (props: Props) => {
                   <label htmlFor="form__add-cate-title" className="block text-sm font-medium text-gray-700">
                     Nội dung
                   </label>
-                  <input
-                    type="text"
+                  <textarea
+                    id=""
                     {...register("content", { required: "Vui lòng nhập đầy đủ" })}
-                    id="form__add-cate-title"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                    cols={30}
+                    rows={10}
                     placeholder="Nhập nội dung bài viết"
-                  />
+                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  ></textarea>
                   <div className="error-image text-sm mt-0.5 text-red-500">{errors.content?.message}</div>
                 </div>
               </div>
