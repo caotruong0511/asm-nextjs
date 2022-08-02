@@ -58,7 +58,7 @@ const MenuPage = ({cateproduct}: Props) => {
                 <a href="">{e.name}</a>
               </h3>
               <div className="price-box text-lg">
-                <span className="font-medium">Giá:</span> {formatCurrency(e.price)}đ
+                <span className="font-medium">Giá:</span> {formatCurrency(e.price)}
               </div>
             </div>
           </div> </div>

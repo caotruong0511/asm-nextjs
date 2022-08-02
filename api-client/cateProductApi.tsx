@@ -11,7 +11,7 @@ export const add = (cateproduct: CateProduct): Promise<CateProduct> => {
   return axiosClient.post("/cateproduct", cateproduct);
 };
 export const get = (id?: string): Promise<CateProduct> => {
-  return axiosClient.get(`/cateproduct/${id}`);
+  return axiosServer.get(`/cateproduct/${id}`);
 };
 export const update = (cateproduct: CateProduct): Promise<CateProduct> => {
   return axiosClient.put(`/cateproduct/${cateproduct._id}`, cateproduct);

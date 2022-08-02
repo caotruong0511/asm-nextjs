@@ -1,14 +1,19 @@
-import { GetStaticProps } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { Product } from "../../models/product";
-import { formatCurrency } from "../../utils";
-type Props = {
-  products: Product[];
-};
+import {  GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import Link from 'next/link';
+import { useRouter } from 'next/router'
+import React from 'react'
+import { get,getAll } from '../../api-client/cateProductApi';
+import { CateProduct } from '../../models/cateProduct'
+import { formatCurrency } from '../../utils';
 
-const Product = ({ products }: Props) => {
+type Props = {
+  cateproduct:CateProduct[] |{};
+}
+
+const Cateproduct = ({cateproduct}: Props) => {
+    const {products} = cateproduct?.cateproduct
+    console.log(products);
+
   return (
     <div className="container-base">
       <main>
@@ -24,10 +29,11 @@ const Product = ({ products }: Props) => {
               </li>
             </ul>
           </div>
-          <h1 className="text-3xl font-sans font-semibold pt-50">Tất cả sản phẩm</h1>
+          <h1 className="text-3xl font-sans font-semibold pt-50">{cateproduct?.cateproduct.name}</h1>
         </section>
         <section className="col-span-12 lg:col-span-9">
           <div className="grid grid-cols-2 md:grid-clos-3 lg:grid-cols-4 gap-4">
+            {!products.length&& <p className='py-10'>Không tồn tại sản phẩm</p>}
             {products?.map((item,index) => {
               return (
    
@@ -63,7 +69,7 @@ const Product = ({ products }: Props) => {
               <li className="border-2 flex items-center justify-center p-2 m-4  w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white">
                 <Link href="/">1</Link>
               </li>
-              <li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white ">
+<li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white ">
                 <Link href="/">2</Link>
               </li>
               <li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white">
@@ -80,18 +86,27 @@ const Product = ({ products }: Props) => {
         </section>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("http://localhost:8080/api/product");
-  const products = await res.json();
+export const getStaticPaths:GetStaticPaths=async()=>{
+  const data =await getAll()
+  const paths = data.map((cateproduct) => ({params:{id:cateproduct._id}}))
+return {
+  paths,
+  fallback:true
+}
+}
 
+export const getStaticProps: GetStaticProps = async (context:GetStaticPropsContext) => {
+  const id = context.params?.id as string
+  const cateproduct = await get(id)
   return {
     props: {
-      products,
+      cateproduct,
     },
     revalidate: 60,
   };
 };
-export default Product;
+
+export default Cateproduct
