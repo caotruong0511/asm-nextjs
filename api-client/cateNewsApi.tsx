@@ -1,8 +1,8 @@
 import { CategoryNews } from "../models/categoryNews";
-import axiosClient from "./config";
+import axiosClient, { axiosServer } from "./config";
 
-export const getAll = (): Promise<CategoryNews> => {
-  return axiosClient.get("/categoryNews");
+export const getAll = (): Promise<CategoryNews[]> => {
+  return axiosServer.get("/categoryNews");
 };
 
 export const remove = (id: string): Promise<CategoryNews> => {
