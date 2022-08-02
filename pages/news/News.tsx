@@ -9,13 +9,13 @@ type NewsProps = {
 
 const News = ({ postsNews }: NewsProps) => {
   return (
-    <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4 sm:pd-[10px] md:mx-[20px]">
+    <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
       {postsNews?.map((item, index) => (
         <div className="flex" key={index}>
           <div className="w-[160px] h-[140px] relative">
             <Image src={item.thumbnail} layout="fill" alt="" className=" object-cover" />
           </div>
-          <div className="pl-2">
+          <div className="pl-2 flex-1">
             <Link href={`/news/detail/${item.slug}`}>
               <span className="text-[21px] font-barlow  hover:text-green-600 cursor-pointer  leading-[30px] ">
                 {item.title}
