@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { User } from "../../../models/users";
+import { selectCarts } from "../../../redux/cartSlice";
 import { getcateProduct } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
 
@@ -25,6 +26,7 @@ const ClientHeader = (props: Props) => {
   const router = useRouter();
   const cateProduct = useSelector((state: RootState) => state.cateproduct.cateProducts);
   const dispatch = useDispatch<any>();
+  const carts = useSelector(selectCarts);
 
   useEffect(() => {
     (async () => {
@@ -126,12 +128,16 @@ const ClientHeader = (props: Props) => {
               </li>
             )}
 
-            <li className="flex items-center ml-3 cursor-pointer relative">
-              <label className="absolute text-xs w-5 h-5 font-semibold flex justify-center items-center border-2 border-[#4d8a54] rounded-full left-[10px] -top-[10px] bg-white text-primary">
-                10
-              </label>
-              <FontAwesomeIcon icon={faCartShopping} className="text-base" />
-              <span className="ml-3 hover:text-[#282828]">Giỏ hàng</span>
+            <li className="ml-3 cursor-pointer relative">
+              <Link href="/cart">
+                <div className="flex items-center">
+                  <label className="absolute text-xs w-5 h-5 font-semibold flex justify-center items-center border-2 border-[#4d8a54] rounded-full left-[10px] -top-[10px] bg-white text-primary">
+                    {carts.length}
+                  </label>
+                  <FontAwesomeIcon icon={faCartShopping} className="text-base" />
+                  <span className="ml-3 hover:text-[#282828]">Giỏ hàng</span>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
@@ -210,7 +216,7 @@ const ClientHeader = (props: Props) => {
         </ul>
 
         <div className="text-[#333] md:hidden flex-1 flex justify-end cursor-pointer text-xl">
-          <Link href="">
+          <Link href="/cart">
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
         </div>

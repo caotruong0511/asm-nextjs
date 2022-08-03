@@ -5,11 +5,14 @@ import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { get } from "../../api-client/cateProductApi";
 import { getAll, getS } from "../../api-client/productApi";
 import { PrdCate } from "../../models/cateProduct";
 import { Product } from "../../models/product";
+import { addCart } from "../../redux/cartSlice";
 import { formatCurrency } from "../../utils";
 
 type Props = {
@@ -18,6 +21,52 @@ type Props = {
 };
 
 const ProductDetail = ({ product, catePrd }: Props) => {
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+
+  const handleChangeQnt = (e: ChangeEvent<HTMLInputElement>) => {
+    const qnt = +e.target.value;
+
+    if (isNaN(qnt)) {
+      toast.info("Vui lòng nhập số");
+      return;
+    }
+    setQuantity(qnt);
+  };
+
+  const increaseQnt = () => {
+    setQuantity((prev) => prev + 1);
+  };
+
+  const decreaseQnt = () => {
+    if (quantity <= 1) {
+      setQuantity(1);
+      return;
+    }
+
+    setQuantity((prev) => prev - 1);
+  };
+
+  const handleAddCart = () => {
+    if (quantity < 1) {
+      toast.info("Vui lòng chọn ít nhất 1 sản phẩm");
+      return;
+    }
+
+    dispatch(
+      addCart({
+        quantity,
+        productId: product._id,
+        productPrice: product.price,
+        image: product.image,
+        slug: product.slug,
+        name: product.name,
+      }),
+    );
+    toast.success(`Đã thêm ${product.name} vào giỏ hàng`);
+    setQuantity(1);
+  };
+
   return (
     <div className="container-base">
       <div>
@@ -38,28 +87,38 @@ const ProductDetail = ({ product, catePrd }: Props) => {
         </div>
         <section>
           <div>
-            <h2 className="text-2xl font-sans text-normal font-semibold pt-50">{product.name}</h2>
+            <h2 className="text-2xl text-normal font-semibold pt-50">{product.name}</h2>
             <p className="italic pt-3">{product.desc}</p>
             <p className="text-lg">
               Giá: <span className="text-primary text-2xl font-bold">{formatCurrency(product.price)}</span>{" "}
             </p>
             <span>Số lượng:</span>
-            <button className="border px-2 ml-5 my-5">-</button>
-            <input className=" border px-4 w-10" type="" value={"1"} />
-            <button className="border px-2">+</button>
+            <button className="border px-2 ml-5 my-5" onClick={decreaseQnt}>
+              -
+            </button>
+            <input
+              className="outline-none border text-center w-10"
+              type=""
+              value={quantity}
+              onChange={handleChangeQnt}
+            />
+            <button className="border px-2" onClick={increaseQnt}>
+              +
+            </button>
           </div>
 
           <div>
             <button
-              type="submit"
-              className=" border border-green-600 rounded-full bg-green-50 p-2.5 w-56  font-sans font-bold text-primary"
+              type="button"
+              onClick={handleAddCart}
+              className=" border border-green-600 rounded-full bg-green-50 p-2.5 w-56  font-bold text-primary"
             >
               <FontAwesomeIcon className="px-2" icon={faCartPlus} />
               Thêm vào giỏ hàng
             </button>
             <button
               type="submit"
-              className="border border-green-600 ml-4 mb-7 rounded-full bg-primary p-2 w-52 text-lg font-sans font-bold text-white"
+              className="border border-green-600 ml-4 mb-7 rounded-full bg-primary p-2 w-52 text-lg font-bold text-white"
             >
               Mua ngay
             </button>
@@ -78,7 +137,7 @@ const ProductDetail = ({ product, catePrd }: Props) => {
       <section>
         <div>
           <ul className="flex pb-2">
-            <li className="text-2xl font-sans font-semibold text-center uppercase">Nhận xét</li>
+            <li className="text-2xl font-semibold text-center uppercase">Nhận xét</li>
           </ul>
           <hr />
         </div>
@@ -129,7 +188,7 @@ const ProductDetail = ({ product, catePrd }: Props) => {
         </section>
       </section>
       <section>
-        <h1 className="text-3xl font-sans font-semibold pt-50 text-center">CÓ THỂ BẠN THÍCH</h1>
+        <h1 className="text-3xl font-semibold pt-50 text-center">CÓ THỂ BẠN THÍCH</h1>
       </section>
       <section className="col-span-12 lg:col-span-9 pb-10">
         <div className="grid grid-cols-2 md:grid-clos-3 lg:grid-cols-4 gap-4">

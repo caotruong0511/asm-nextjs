@@ -119,18 +119,18 @@ const OrderDetail: NextPageWithLayout = (props: Props) => {
         <div className="shadow sm:rounded-md bg-white p-5">
           <div>
             {" "}
-            Đơn hàng #<mark>{order._id}</mark> đặt lúc <mark>{formatDate(order.createdAt)}</mark> hiện tại{" "}
+            Đơn hàng #<mark>{order._id}</mark> đặt lúc <mark>{formatDate(order.createdAt!)}</mark> hiện tại{" "}
             <mark>
               {order.status === 0
                 ? "Đang chờ xác nhận"
                 : order.status === 1
-                ? `Đã xác nhận lúc ${formatDate(order.updatedAt || "")}`
+                ? `Đã xác nhận lúc ${formatDate(order.updatedAt!)}`
                 : order.status === 2
-                ? `Đang giao hàng lúc ${formatDate(order.updatedAt || "")}`
+                ? `Đang giao hàng lúc ${formatDate(order.updatedAt!)}`
                 : order.status === 3
-                ? `Đã giao thành công lúc ${formatDate(order.updatedAt || "")}`
+                ? `Đã giao thành công lúc ${formatDate(order.updatedAt!)}`
                 : order.status === 4
-                ? `Đã bị hủy lúc ${formatDate(order.updatedAt || "")}`
+                ? `Đã bị hủy lúc ${formatDate(order.updatedAt!)}`
                 : ""}
             </mark>
           </div>
@@ -208,7 +208,7 @@ const OrderDetail: NextPageWithLayout = (props: Props) => {
                 </tr>
                 <tr className="border-b">
                   <td className="py-1.5 font-medium">Thời gian đặt:</td>
-                  <td className="py-1.5 text-right">{formatDate(order?.createdAt || "")}</td>
+                  <td className="py-1.5 text-right">{formatDate(order?.createdAt!)}</td>
                 </tr>
                 <tr>
                   <td className="py-1.5 font-medium">Ghi chú:</td>

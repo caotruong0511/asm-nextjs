@@ -1,4 +1,4 @@
-import { Order } from "../models/order";
+import { Order, OrderDetail } from "../models/order";
 import axiosClient from "./config";
 
 export const getAll = (): Promise<Order[]> => {
@@ -23,4 +23,12 @@ export const update = (order: Order): Promise<Order> => {
 
 export const updateSttOrder = (data: { status: number; orderId: string }): Promise<Order> => {
   return axiosClient.put(`/order/${data.orderId}`, { status: data.status });
+};
+
+export const addOrderDetail = (orderDetail: OrderDetail) => {
+  return axiosClient.post("/orderDetail", orderDetail);
+};
+
+export const getOrderByUser = (userId: string): Promise<Order[]> => {
+  return axiosClient.get(`/order/getByUser/${userId}`);
 };

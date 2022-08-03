@@ -19,7 +19,7 @@ const ProfileLayout = ({ children }: Props) => {
             <Link href=""> Trang thông tin</Link>
           </li>
         </ul>
-        <div className="mt-5 grid md:grid-cols-4 grid-cols-1">
+        <div className="mt-5 grid md:grid-cols-4 grid-cols-1 mb-10">
           <div className="">
             <Sidebar></Sidebar>
           </div>
