@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { add, get, getAll, remove } from "../api-client/comment";
+import { add, get, getAll, getByProduct, remove } from "../api-client/comment";
 import { Cmt } from "../models/comment";
 
 type CmtState = {
@@ -22,14 +22,20 @@ export const deleteCmt = createAsyncThunk("comment/deleteCmt", async (id: string
   return res;
 });
 
-export const addCmt = createAsyncThunk("comment/addCmt", async (Cmt: any) => {
+export const addCmt = createAsyncThunk("comment/addCmt", async (Cmt: Cmt, { dispatch }) => {
   const res = await add(Cmt);
-  return res;
+  await dispatch(getCommentsByProduct(Cmt.slug!)).unwrap();
 });
 
 export const getACmt = createAsyncThunk("comment/getNew", async (id: any) => {
   const res = await get(id);
   return res;
+});
+
+export const getCommentsByProduct = createAsyncThunk("comment/getCommentsByProduct", async (slug: string) => {
+  const comments = await getByProduct(slug);
+
+  return comments;
 });
 
 // export const updateNews = createAsyncThunk("comment/updateNew", async (news: any) => {
@@ -50,12 +56,12 @@ const newsSlice = createSlice({
       state.comments = state.comments.filter((item) => item._id !== payload?._id);
     });
 
-    builder.addCase(addCmt.fulfilled, (state, { payload }) => {
-      state.comments.push(payload as Cmt);
-    });
-
     builder.addCase(getACmt.fulfilled, (state, { payload }) => {
       state.comment = payload as Cmt;
+    });
+
+    builder.addCase(getCommentsByProduct.fulfilled, (state, { payload }) => {
+      state.comments = payload;
     });
 
     // builder.addCase(updateNews.fulfilled, (state, { payload }) => {

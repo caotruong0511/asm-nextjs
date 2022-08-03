@@ -8,10 +8,14 @@ export const remove = (id: string): Promise<Cmt> => {
   return axiosClient.delete(`/comment/${id}`);
 };
 
-export const add = (contact: Cmt): Promise<Cmt> => {
-  return axiosClient.post("/comment", contact);
+export const add = (comment: Cmt): Promise<Cmt> => {
+  return axiosClient.post("/comment", comment);
 };
 
 export const get = (id: string): Promise<Cmt> => {
   return axiosClient.get(`/comment/${id}`);
+};
+
+export const getByProduct = (slug: string): Promise<Cmt[]> => {
+  return axiosClient.get(`/comment/getByProduct/${slug}`);
 };
