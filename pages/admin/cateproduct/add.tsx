@@ -33,7 +33,7 @@ const CateProductAdd:NextPageWithLayout = (props: Props) => {
             values.image = data.url;
       
             await dispatch(addCateProduct(values)).unwrap();
-            toast.success("Thêm tài khoản thành công");
+            toast.success("Thêm danh mục thành công");
             reset();
             setPreview("");
           } catch (error) {
@@ -63,7 +63,7 @@ const CateProductAdd:NextPageWithLayout = (props: Props) => {
       <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
         <div className="shadow overflow-hidden sm:rounded-md">
           <div className="px-4 py-5 bg-white sm:p-6">
-            <span className="font-semibold mb-4 block text-xl">Thông tin chi tiết sản phẩm:</span>
+            <span className="font-semibold mb-4 block text-xl">Thông tin chi tiết danh mục:</span>
             <div className="grid grid-cols-6 gap-3">
               <div className="col-span-6">
                 <label htmlFor="form__add-user-fullname" className="block text-sm font-medium text-gray-700">

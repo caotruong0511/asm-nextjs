@@ -1,7 +1,7 @@
 import { News } from "../models/news";
 import axiosClient, { axiosServer } from "./config";
 
-export const getAll = (): Promise<News> => {
+export const getAll = (): Promise<News[]> => {
   return axiosServer.get("/news");
 };
 
@@ -19,4 +19,8 @@ export const get = (id: string): Promise<News> => {
 
 export const update = (news: News): Promise<News> => {
   return axiosClient.put(`/news/${news._id}`, news);
+};
+
+export const getBySlug = (slug?: any): Promise<News> => {
+  return axiosServer.get(`/news/${slug}/getBySlug`);
 };

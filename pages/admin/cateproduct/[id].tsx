@@ -33,9 +33,10 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
 
   const onSubmit: SubmitHandler<cateProduct> = async (values: cateProduct) => {
     try {
+      if (typeof values.image === "object") {
       const { data } = await uploadImage(values.image[0]);
       values.image = data.url;
-
+      }
       await dispatch(updateCateProduct(values)).unwrap();
       toast.success("Cập nhật thành công");
       router.push("/admin/cateproduct");
@@ -80,7 +81,7 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
         <form action="" method="POST" onSubmit={handleSubmit(onSubmit)}>
           <div className="shadow overflow-hidden sm:rounded-md">
             <div className="px-4 py-5 bg-white sm:p-6">
-              <span className="font-semibold mb-4 block text-xl">Thông tin chi tiết sản phẩm:</span>
+              <span className="font-semibold mb-4 block text-xl">Thông tin chi tiết danh mục:</span>
               <div className="grid grid-cols-6 gap-3">
                 <div className="col-span-6">
                   <label htmlFor="form__add-user-fullname" className="block text-sm font-medium text-gray-700">
@@ -128,7 +129,7 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
                   </div>
                 </div>
                 <div className="col-span-6">
-                  <label className="block text-sm font-medium text-gray-700">Ảnh sản phẩm</label>
+                  <label className="block text-sm font-medium text-gray-700">Ảnh danh mục</label>
                   <div className="w-full mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                     <div className="space-y-1 text-center">
                       <svg
@@ -153,7 +154,7 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
                           <span>Upload a file</span>
                           <input
                             id="form__add-user-image"
-                            {...register("image", { required: "Vui lòng chọn ảnh" })}
+                            {...register("image")}
                             onChange={(e: any) => {
                               setPreview(URL.createObjectURL(e.target.files[0]));
                             }}

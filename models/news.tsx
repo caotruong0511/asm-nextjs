@@ -5,4 +5,5 @@ export type News = {
   thumbnail: string;
   desc: string;
   content: string;
+  createdAt: Date;
 };

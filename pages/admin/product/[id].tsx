@@ -41,9 +41,10 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
 
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
+      if (typeof values.image === "object") {
       const { data } = await uploadImage(values.image[0]);
       values.image = data.url;
-
+      }
       await dispatch(updateproduct(values)).unwrap();
       toast.success("Cập nhật thành công");
       router.push("/admin/product");
@@ -196,7 +197,7 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                           <span>Upload a file</span>
                           <input
                             id="form__add-user-image"
-                            {...register("image", { required: "Vui lòng chọn ảnh" })}
+                            {...register("image")}
                             onChange={(e: any) => {
                               setPreview(URL.createObjectURL(e.target.files[0]));
                             }}
