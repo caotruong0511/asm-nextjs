@@ -17,12 +17,12 @@ const News = ({ postsNews }: NewsProps) => {
           </div>
           <div className="pl-2 flex-1">
             <Link href={`/news/detail/${item.slug}`}>
-              <span className="text-[21px] font-barlow  hover:text-green-600 cursor-pointer  leading-[30px] ">
+              <span className="limit-line-2 text-[21px] font-barlow  hover:text-green-600 cursor-pointer  leading-[30px] ">
                 {item.title}
               </span>
             </Link>
 
-            <p className="text-[14px] mt-2 font-quicksand">{item.desc}</p>
+            <p className="text-[14px] mt-2 font-quicksand limit-line-3">{item.desc}</p>
           </div>
         </div>
       ))}

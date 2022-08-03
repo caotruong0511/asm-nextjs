@@ -26,38 +26,32 @@ const Product = ({ products }: Props) => {
           </div>
           <h1 className="text-3xl font-sans font-semibold pt-50">Tất cả sản phẩm</h1>
         </section>
-        <section className="col-span-12 lg:col-span-9">
+        <section className="col-span-12 lg:col-span-9 pb-4">
           <div className="grid grid-cols-2 md:grid-clos-3 lg:grid-cols-4 gap-4">
-            {products?.map((item,index) => {
+            {products?.map((item, index) => {
               return (
-   
                 <div key={index}>
-                  <div className="group" >
-                    <div className="relative bg-[#f7f7f7] overflow-hidden border mt-10">
-                      <img
-                        src="https://bizweb.dktcdn.net/thumb/large/100/415/010/products/20.jpg?v=1608880067000"
-                        alt=""
-                      />
+                  <div className="group">
+                    <div className="relative bg-[#f7f7f7] overflow-hidden border mt-10 pt-[100%]">
+                      {item.image && <Image src={item.image} alt="" layout="fill" />}
                       <button className="absolute w-full bottom-0 h-9 bg-primary text-center text-gray-50 opacity-95 uppercase font-semibold text-sm transition ease-linear  hover:text-white translate-y-full group-hover:translate-y-0">
                         Xem nhanh
                       </button>
                     </div>
                     <div className="text-center py-3">
-                      <a className="block font-semibold text-xl" href="">
-                       {item.name}
-                      </a>
+                      <Link href={`/product/${item.slug}`}>
+                        <span className="cursor-pointer block font-semibold text-xl">{item.name}</span>
+                      </Link>
                       <span className="font-semibold text-xl">
-                        <span className="font-medium">Giá </span>:{formatCurrency(item.price)}{" "}
+                        <span className="font-medium">Giá</span>: {formatCurrency(item.price)}
                       </span>
-             
                     </div>
                   </div>
-              
                 </div>
               );
             })}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 ">
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 ">
             <div></div>
             <ul className="flex px-20 py-10">
               <li className="border-2 flex items-center justify-center p-2 m-4  w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white">
@@ -76,7 +70,7 @@ const Product = ({ products }: Props) => {
                 <Link href="/">5</Link>
               </li>
             </ul>
-          </div>
+          </div> */}
         </section>
       </main>
     </div>

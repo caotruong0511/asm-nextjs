@@ -10,6 +10,7 @@ import { get } from "../../api-client/cateProductApi";
 import { getAll, getS } from "../../api-client/productApi";
 import { PrdCate } from "../../models/cateProduct";
 import { Product } from "../../models/product";
+import { formatCurrency } from "../../utils";
 
 type Props = {
   product: Product;
@@ -17,7 +18,6 @@ type Props = {
 };
 
 const ProductDetail = ({ product, catePrd }: Props) => {
-  console.log(catePrd.cateproduct);
   return (
     <div className="container-base">
       <div>
@@ -39,9 +39,9 @@ const ProductDetail = ({ product, catePrd }: Props) => {
         <section>
           <div>
             <h2 className="text-2xl font-sans text-normal font-semibold pt-50">{product.name}</h2>
-            <p className="italic pt-3">Mô tả đang cập nhật</p>
+            <p className="italic pt-3">{product.desc}</p>
             <p className="text-lg">
-              Giá: <span className="text-primary text-2xl font-bold">{product.price}</span>{" "}
+              Giá: <span className="text-primary text-2xl font-bold">{formatCurrency(product.price)}</span>{" "}
             </p>
             <span>Số lượng:</span>
             <button className="border px-2 ml-5 my-5">-</button>
@@ -77,18 +77,12 @@ const ProductDetail = ({ product, catePrd }: Props) => {
       </section>
       <section>
         <div>
-          <ul className="flex pb-5">
-            <li className="text-2xl font-sans font-semibold  text-center">
-              <Link href="/">MÔ TẢ SẢN PHẨM </Link>
-            </li>
-            <li className="text-2xl font-sans font-semibold pl-10  text-center">
-              <Link href="/">CHÍNH SÁCH BẢO HÀNH</Link>
-            </li>
+          <ul className="flex pb-2">
+            <li className="text-2xl font-sans font-semibold text-center uppercase">Nhận xét</li>
           </ul>
           <hr />
         </div>
         <section>
-          <h2>Đánh giá</h2>
           <form action="" className="px-3 py-2 border-2 border-[#4d8a54] mt-3">
             <h2 className="font-semibold text-xl">Nhận xét về {product.name}</h2>
             <div className="mt-2">
@@ -106,12 +100,12 @@ const ProductDetail = ({ product, catePrd }: Props) => {
               <div className="text-sm mt-0.5 text-red-500"></div>
             </div>
             <button className="my-3 px-4 py-2 bg-[#4d8a54] font-semibold uppercase text-white text-sm transition ease-linear duration-300 hover:shadow-[inset_0_0_100px_rgba(0,0,0,0.2)]">
-              Gửi đi {product.catygoryId}
+              Gửi đi
             </button>
           </form>
           <div>
             <ul className="mt-4 grid grid-cols-1 divide-y divide-dashed">
-              <li className="flex block py-4">
+              <li className="flex py-4">
                 <Image
                   width={70}
                   height={70}
@@ -133,28 +127,26 @@ const ProductDetail = ({ product, catePrd }: Props) => {
             </ul>
           </div>
         </section>
-
-        <div className="py-10">{product.desc}</div>
       </section>
       <section>
         <h1 className="text-3xl font-sans font-semibold pt-50 text-center">CÓ THỂ BẠN THÍCH</h1>
       </section>
       <section className="col-span-12 lg:col-span-9 pb-10">
         <div className="grid grid-cols-2 md:grid-clos-3 lg:grid-cols-4 gap-4">
-          {catePrd.cateproduct.products?.map((item) => (
-            <div className="group ">
-              <div className="relative bg-[#f7f7f7] overflow-hidden border mt-10">
-                <img src={item.image} alt="" />
+          {catePrd.cateproduct.products?.slice(0, 4).map((item, index) => (
+            <div className="group" key={index}>
+              <div className="relative bg-[#f7f7f7] overflow-hidden border mt-10 pt-[100%]">
+                {product.image && <Image src={product.image} alt="" layout="fill" />}
                 <button className="absolute w-full bottom-0 h-9 bg-primary text-center text-gray-50 opacity-95 uppercase font-semibold text-sm transition ease-linear duration-300 hover:opacity-100 hover:text-white translate-y-full group-hover:translate-y-0">
                   Xem nhanh
                 </button>
               </div>
               <div className="text-center py-3">
-                <a className="block font-semibold text-xl" href="">
-                  {item.name}
-                </a>
+                <Link href={`/product/${item.slug}`}>
+                  <span className=" cursor-pointer block font-semibold text-xl">{item.name}</span>
+                </Link>
                 <span className="font-semibold text-xl">
-                  <span className="font-semibold text-lg">Giá </span>:25.000₫{" "}
+                  <span className="font-semibold text-lg">Giá</span>: {formatCurrency(product.price)}
                 </span>
               </div>
             </div>
