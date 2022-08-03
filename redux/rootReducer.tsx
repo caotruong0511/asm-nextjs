@@ -8,6 +8,7 @@ import slideReducer from "./slide";
 import productReducer from "./productSlice";
 import commentReducer from "./cmtSlice";
 import cateproductReducer from "./cateProductSlice";
+import orderReducer from "./orderSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   product: productReducer,
   cateproduct: cateproductReducer,
   comment: commentReducer,
+  order: orderReducer,
 });
 
 export default rootReducer;
