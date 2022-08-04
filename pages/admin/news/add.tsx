@@ -2,13 +2,15 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
+import { getCateNews } from "../../../redux/cateNewsSlice";
 import { addNews } from "../../../redux/newsSlice";
+import { RootState } from "../../../redux/store";
 import { uploadImage } from "../../../utils";
 
 type Props = {};
@@ -21,12 +23,19 @@ type Inputs = {
   };
   desc: string;
   content: string;
+  categoryId: string;
 };
 
 const AddNews: NextPageWithLayout = (props: Props) => {
   const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
+  const cateNews = useSelector((state: RootState) => state.new.cateNews);
   const router = useRouter();
+
+  useEffect(() => {
+    dispatch(getCateNews());
+  }, [dispatch]);
+  console.log(cateNews);
 
   const {
     register,
@@ -91,6 +100,28 @@ const AddNews: NextPageWithLayout = (props: Props) => {
                     placeholder="Nhập tiêu đề bài viết"
                   />
                   <div className="error-image text-sm mt-0.5 text-red-500">{errors.title?.message}</div>
+                </div>
+
+                <div className="col-span-6 md:col-span-3">
+                  <label htmlFor="form__add-user-role" className="block text-sm font-medium text-gray-700">
+                    Danh mục
+                  </label>
+                  <select
+                    id="form__add-user-role"
+                    {...register("categoryId", { required: "Vui lòng chọn danh mục" })}
+                    defaultValue={0}
+                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option value="">-- Chọn danh mục --</option>
+                    {cateNews?.map((e, index) => (
+                      <>
+                        <option key={index} value={e._id}>
+                          {e.name}
+                        </option>
+                      </>
+                    ))}
+                  </select>
+                  <div className="text-sm mt-0.5 text-red-500">{errors.categoryId?.message}</div>
                 </div>
 
                 <div className="col-span-6">

@@ -121,10 +121,12 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                     defaultValue={0}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    <option value="">-- Chọn vai trò --</option>
+                    <option value="">-- Chọn danh mục --</option>
                     {cateProducts?.map((e, index) => (
                       <>
-                        <option value={e._id}>{e.name}</option>
+                        <option key={index} value={e._id}>
+                          {e.name}
+                        </option>
                       </>
                     ))}
                   </select>

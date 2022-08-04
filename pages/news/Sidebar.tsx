@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
+import { useSelector } from "react-redux";
 import { CategoryNews } from "../../models/categoryNews";
+import { RootState } from "../../redux/store";
 
 type CateNewsProps = {
   cateNews: CategoryNews[];
 };
 
 const Sidebar = ({ cateNews }: CateNewsProps) => {
+  // const cateNew = useSelector((state: RootState) => state.new.cateNews);
   return (
     <div className="">
       <aside className="w-full">
@@ -19,7 +22,7 @@ const Sidebar = ({ cateNews }: CateNewsProps) => {
           <ul>
             {cateNews?.map((item, index) => (
               <li className="flex items-center font-quicksand leading-[24px] px-[3px] py-[5px]" key={index}>
-                <Link href="#">{item.name}</Link>
+                <Link href={`/cateNews/${item._id}`}>{item.name}</Link>
               </li>
             ))}
           </ul>

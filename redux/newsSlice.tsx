@@ -22,9 +22,9 @@ export const deleteNews = createAsyncThunk("news/deleteNew", async (id: string) 
   return res;
 });
 
-export const addNews = createAsyncThunk("news/addNew", async (news: any) => {
+export const addNews = createAsyncThunk("news/addNew", async (news: any, { dispatch }) => {
   const res = await add(news);
-  return res;
+  await dispatch(getNews()).unwrap();
 });
 
 export const getNew = createAsyncThunk("news/getNew", async (id: any) => {
@@ -48,10 +48,6 @@ const newsSlice = createSlice({
 
     builder.addCase(deleteNews.fulfilled, (state, { payload }) => {
       state.news = state.news.filter((item) => item._id !== payload?._id);
-    });
-
-    builder.addCase(addNews.fulfilled, (state, { payload }) => {
-      state.news.push(payload as News);
     });
 
     builder.addCase(getNew.fulfilled, (state, { payload }) => {
