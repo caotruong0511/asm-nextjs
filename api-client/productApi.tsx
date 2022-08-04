@@ -19,3 +19,7 @@ export const getS = (slug?: string): Promise<Product> => {
 export const update = (product: Product): Promise<Product> => {
   return axiosClient.put(`/product/${product._id}`, product);
 };
+
+export const searchProduct = (search: string): Promise<Product[]> => {
+  return axiosClient.get(`/product/search/?key=${search}`);
+};
