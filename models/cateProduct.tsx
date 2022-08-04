@@ -1,6 +1,17 @@
+import { Product } from "./product";
+
 export type CateProduct = {
-    _id?: string;
+  _id?: string;
+  name: string;
+  image: string;
+};
+
+export type PrdCate = {
+  cateproduct: {
+    _id: string;
     name: string;
-    image:string
+    status: number;
+    products?: Product[];
   };
-  
+  products: Product[];
+};

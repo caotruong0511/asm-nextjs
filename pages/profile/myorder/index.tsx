@@ -1,11 +1,33 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Link from "next/link";
 import { NextPageWithLayout } from "../../../models/layout";
 import { ClientLayout } from "../../../layouts";
 import ProfileLayout from "../../../layouts/Pro5Layout";
+import { Order } from "../../../models/order";
+import { getOrderByUser } from "../../../api-client/orderApi";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+import { User } from "../../../models/users";
+import moment from "moment";
+import { formatCurrency } from "../../../utils";
 type Props = {};
 
 const Myoder: NextPageWithLayout = (props: Props) => {
+  const [orders, setOrders] = useState<Order[]>();
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser) as User;
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await getOrderByUser(currentUser?._id!);
+        console.log(res);
+        setOrders(res);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [currentUser?._id]);
+
   return (
     <>
       <p className="font-quicksand text-[19px] leading-[26px] pb-3">ĐƠN HÀNG CỦA BẠN</p>
@@ -17,29 +39,46 @@ const Myoder: NextPageWithLayout = (props: Props) => {
                 Đơn hàng
               </th>
               <th scope="col" className="py-3 px-6 border-[1px]">
-                Ngày
+                Khách hàng
               </th>
               <th scope="col" className="py-3 px-6 border-[1px]">
-                Địa chỉ
+                Ngày
               </th>
               <th scope="col" className="py-3 px-6 border-[1px]">
                 Giá trị đơn hàng
               </th>
               <th scope="col" className="py-3 px-6 border-[1px]">
-                TT thanh toán
+                TT đơn hàng
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr className="bg-white ">
-              <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap text-blue-500 hover:text-black">
-                <Link href="#">#10002990028839200</Link>
-              </th>
-              <td className="py-4 px-6">Sliver</td>
-              <td className="py-4 px-6">Laptop</td>
-              <td className="py-4 px-6">$2999</td>
-              <td className="py-4 px-6 text-right"></td>
-            </tr>
+            {orders?.map((item, index) => (
+              <tr className="bg-white " key={index}>
+                <th scope="row" className="py-4 px-6 font-medium whitespace-nowrap text-blue-500 hover:text-black">
+                  <Link href={`/profile/myorder/${item._id}`}>
+                    <span className="cursor-pointer">#{item._id?.substring(0, 5)}...</span>
+                  </Link>
+                </th>
+                <td className="py-4 px-6">
+                  <p>{item.customerName}</p>
+                  <p>{item.phone}</p>
+                </td>
+                <td className="py-4 px-6">{moment(item.createdAt).format("DD/MM/YYYY HH:mm:ss")}</td>
+                <td className="py-4 px-6">{formatCurrency(item.totalPrice)}</td>
+                <td className="py-4 px-6 text-left">
+                  {!item.status
+                    ? "Đơn hàng mới"
+                    : item.status === 1
+                    ? "Đã xác nhận"
+                    : item.status === 2
+                    ? "Đang giao hàng"
+                    : item.status === 3
+                    ? "Đã giao hàng"
+                    : "Đã hủy"}
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

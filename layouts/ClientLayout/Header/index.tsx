@@ -11,11 +11,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { searchProduct } from "../../../api-client/productApi";
+import { Product } from "../../../models/product";
 import { User } from "../../../models/users";
+import { selectCarts } from "../../../redux/cartSlice";
 import { getcateProduct } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
+import { formatCurrency } from "../../../utils";
 
 type Props = {};
 
@@ -25,6 +30,28 @@ const ClientHeader = (props: Props) => {
   const router = useRouter();
   const cateProduct = useSelector((state: RootState) => state.cateproduct.cateProducts);
   const dispatch = useDispatch<any>();
+  const carts = useSelector(selectCarts);
+  const [search, setSearch] = useState("");
+  const [productsSearch, setProductsSearch] = useState<Product[]>();
+
+  const handleSearchChange = async (e: ChangeEvent<HTMLInputElement>) => {
+    const searchStr = e.target.value;
+    setSearch(searchStr);
+
+    const products = await searchProduct(searchStr);
+    setProductsSearch(products);
+  };
+
+  const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!search.trim()) {
+      toast.info("Vui lòng nhập tên SP");
+      return;
+    }
+
+    router.push(`/search/${search}`);
+  };
 
   useEffect(() => {
     (async () => {
@@ -34,7 +61,7 @@ const ClientHeader = (props: Props) => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [dispatch]);
 
   return (
     <header className="border-b">
@@ -57,9 +84,10 @@ const ClientHeader = (props: Props) => {
               <span className="ml-1 group-hover:text-[#282828]">Tìm kiếm</span>
 
               <div className="hidden min-w-[280px] z-20 group-hover:block absolute top-full -right-[100px] bg-white shadow p-3 opacity-100">
-                <form action="" className="flex">
+                <form action="" className="flex" onSubmit={handleSearchSubmit}>
                   <input
                     type="text"
+                    onChange={handleSearchChange}
                     className="text-black shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] hover:shadow-none focus:shadow-[0_0_5px_#ccc] flex-1 border px-2 h-8 text-sm outline-none"
                     placeholder="Nhập tên sản phẩm"
                   />
@@ -69,36 +97,28 @@ const ClientHeader = (props: Props) => {
                 </form>
 
                 <ul className="mt-3 grid grid-cols-1 divide-y max-h-[70vh] overflow-y-auto">
-                  <li>
-                    <Link href="">
-                      <div className="flex py-2 transition duration-200 hover:bg-gray-50 hover:text-[#D9A953] text-black items-center px-2">
-                        <Image
-                          src="http://res.cloudinary.com/levantuan/image/upload/v1645174710/assignment-js/vizgnh3brvcvqkin1mfi.png"
-                          className="w-10 h-10 object-cover rounded-full bg-[#f7f7f7]"
-                          alt=""
-                          width={80}
-                          height={80}
-                        />
-                        <p className="pl-1 pr-2 normal-case font-normal">Trà sữa khoai môn Macchiato</p>
-                        <p className="font-medium ml-auto">25.000&nbsp;VND</p>
-                      </div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="">
-                      <div className="flex py-2 transition duration-200 hover:bg-gray-50 hover:text-[#D9A953] text-black items-center px-2">
-                        <Image
-                          src="http://res.cloudinary.com/levantuan/image/upload/v1645174710/assignment-js/vizgnh3brvcvqkin1mfi.png"
-                          className="w-10 h-10 object-cover rounded-full bg-[#f7f7f7]"
-                          alt=""
-                          width={80}
-                          height={80}
-                        />
-                        <p className="pl-1 pr-2 normal-case font-normal">Trà sữa khoai môn Macchiato</p>
-                        <p className="font-medium ml-auto">25.000&nbsp;VND</p>
-                      </div>
-                    </Link>
-                  </li>
+                  {search && !productsSearch?.length && <p className="text-black">Không tìm thấy SP!</p>}
+
+                  {productsSearch?.map((item, index) => (
+                    <li key={index}>
+                      <Link href={`/product/${item.slug}`}>
+                        <div className="flex py-2 transition duration-200 hover:bg-gray-50 hover:text-[#D9A953] text-black items-center px-2">
+                          <div className="w-10 h-10 object-cover rounded-full relative">
+                            {item.image && (
+                              <Image
+                                src={item.image}
+                                className="w-10 h-10 object-cover rounded-full bg-[#f7f7f7]"
+                                alt=""
+                                layout="fill"
+                              />
+                            )}
+                          </div>
+                          <p className="pl-1 pr-2 normal-case font-normal">{item.name}</p>
+                          <p className="font-medium ml-auto">{formatCurrency(item.price)}</p>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </li>
@@ -126,12 +146,16 @@ const ClientHeader = (props: Props) => {
               </li>
             )}
 
-            <li className="flex items-center ml-3 cursor-pointer relative">
-              <label className="absolute text-xs w-5 h-5 font-semibold flex justify-center items-center border-2 border-[#4d8a54] rounded-full left-[10px] -top-[10px] bg-white text-primary">
-                10
-              </label>
-              <FontAwesomeIcon icon={faCartShopping} className="text-base" />
-              <span className="ml-3 hover:text-[#282828]">Giỏ hàng</span>
+            <li className="ml-3 cursor-pointer relative">
+              <Link href="/cart">
+                <div className="flex items-center">
+                  <label className="absolute text-xs w-5 h-5 font-semibold flex justify-center items-center border-2 border-[#4d8a54] rounded-full left-[10px] -top-[10px] bg-white text-primary">
+                    {carts.length}
+                  </label>
+                  <FontAwesomeIcon icon={faCartShopping} className="text-base" />
+                  <span className="ml-3 hover:text-[#282828]">Giỏ hàng</span>
+                </div>
+              </Link>
             </li>
           </ul>
         </div>
@@ -210,7 +234,7 @@ const ClientHeader = (props: Props) => {
         </ul>
 
         <div className="text-[#333] md:hidden flex-1 flex justify-end cursor-pointer text-xl">
-          <Link href="">
+          <Link href="/cart">
             <FontAwesomeIcon icon={faShoppingCart} />
           </Link>
         </div>

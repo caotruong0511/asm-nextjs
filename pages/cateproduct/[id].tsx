@@ -1,4 +1,4 @@
-import {  GetStaticProps, GetStaticPropsContext } from 'next';
+import {  GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -53,7 +53,7 @@ const Cateproduct = ({cateproduct}: Props) => {
                        {item.name}
                       </a>
                       <span className="font-semibold text-xl">
-                        <span className="font-medium">Giá </span>:{formatCurrency(item.price)}₫{" "}
+                        <span className="font-medium">Giá </span>:{formatCurrency(item.price)}{" "}
                       </span>
              
                     </div>
@@ -69,7 +69,7 @@ const Cateproduct = ({cateproduct}: Props) => {
               <li className="border-2 flex items-center justify-center p-2 m-4  w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white">
                 <Link href="/">1</Link>
               </li>
-              <li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white ">
+<li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white ">
                 <Link href="/">2</Link>
               </li>
               <li className="border-2 flex items-center justify-center p-2 m-4 w-9 h-8 text-center hover:bg-[#4d8a54]  hover:text-white">

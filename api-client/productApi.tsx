@@ -13,6 +13,13 @@ export const add = (product: Product): Promise<Product> => {
 export const get = (id?: string): Promise<Product> => {
   return axiosClient.get(`/product/${id}`);
 };
+export const getS = (slug?: string): Promise<Product> => {
+  return axiosServer.get(`/product/${slug}/getBySlug`);
+};
 export const update = (product: Product): Promise<Product> => {
   return axiosClient.put(`/product/${product._id}`, product);
+};
+
+export const searchProduct = (search: string): Promise<Product[]> => {
+  return axiosClient.get(`/product/search/?key=${search}`);
 };
