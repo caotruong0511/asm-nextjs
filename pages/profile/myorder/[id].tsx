@@ -9,6 +9,7 @@ import ProfileLayout from "../../../layouts/Pro5Layout";
 import moment from "moment";
 import { formatCurrency } from "../../../utils";
 import Swal from "sweetalert2";
+import Head from "next/head";
 type Props = {};
 
 const Detailorder: NextPageWithLayout = (props: Props) => {
@@ -43,6 +44,9 @@ const Detailorder: NextPageWithLayout = (props: Props) => {
 
   return (
     <div className="md:col-span-3 col-span-1">
+      <Head>
+        <title>Chi tiết đơn hàng #{order?._id}</title>
+      </Head>
       <div className="flex justify-between">
         <p className="font-quicksand md:text-[19px] text-[16px] leading-[26px] pb-3 font-{450}">
           CHI TIẾT ĐƠN HÀNG <span>#{order?._id}</span>

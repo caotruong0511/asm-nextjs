@@ -1,5 +1,6 @@
-import { faChevronRight, faLeftLong, faLongArrowAltLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faLeftLong, faLongArrowAltLeft, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -25,6 +26,9 @@ const CartList = (props: Props) => {
 
   return (
     <main>
+      <Head>
+        <title>Cart</title>
+      </Head>
       <CartNav />
 
       <section className="container max-w-6xl mx-auto px-3 mt-10 grid grid-cols-12 mb-9">
