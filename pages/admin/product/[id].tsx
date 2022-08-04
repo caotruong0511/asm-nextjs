@@ -7,7 +7,7 @@ import { AdminLayout } from "../../../layouts";
 import { NextPageWithLayout } from "../../../models/layout";
 import { toast } from "react-toastify";
 import { uploadImage } from "../../../utils";
-import {  getone, updateproduct } from "../../../redux/productSlice";
+import { getone, updateproduct } from "../../../redux/productSlice";
 import { useRouter } from "next/router";
 import { get } from "../../../api-client/productApi";
 import { getcateProduct } from "../../../redux/cateProductSlice";
@@ -26,12 +26,12 @@ type Inputs = {
 
 const ProductEdit: NextPageWithLayout = (props: Props) => {
   const [preview, setPreview] = useState<string>();
-  const cateProducts= useSelector((state:RootState)=>state.cateproduct.cateProducts)
+  const cateProducts = useSelector((state: RootState) => state.cateproduct.cateProducts);
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
   console.log(cateProducts);
-  
+
   const {
     register,
     handleSubmit,
@@ -42,8 +42,8 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
       if (typeof values.image === "object") {
-      const { data } = await uploadImage(values.image[0]);
-      values.image = data.url;
+        const { data } = await uploadImage(values.image[0]);
+        values.image = data.url;
       }
       await dispatch(updateproduct(values)).unwrap();
       toast.success("Cập nhật thành công");
@@ -57,16 +57,15 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   useEffect(() => {
     (async () => {
       console.log(id);
-      
+
       const product = await dispatch(getone(id)).unwrap();
-      
-     const cate= await   dispatch(getcateProduct())
-    
-    console.log(cateProducts);
+
+      const cate = await dispatch(getcateProduct());
+
+      console.log(cateProducts);
       reset(product);
       setPreview(product.image);
-    })()
-    
+    })();
   }, [dispatch, id, reset]);
 
   return (
@@ -118,12 +117,14 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                     defaultValue={0}
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    <option value="">-- Chọn vai trò --</option>
-                    {cateProducts?.map((e,index)=>
-                    <>
-                    <option  value={e._id}>{e.name}</option>
-                    </>
-                    )}
+                    <option value="">-- Chọn danh mục --</option>
+                    {cateProducts?.map((e, index) => (
+                      <>
+                        <option key={index} value={e._id}>
+                          {e.name}
+                        </option>
+                      </>
+                    ))}
                   </select>
                   <div className="text-sm mt-0.5 text-red-500">{errors.catygoryId?.message}</div>
                 </div>
@@ -155,7 +156,6 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                   />
                   <div className="text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
                 </div>
-
 
                 <div className="col-span-3">
                   <label className="block text-sm font-medium text-gray-700">Xem trước ảnh</label>
