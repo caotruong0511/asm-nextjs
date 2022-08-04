@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { get } from "../../api-client/cateProductApi";
 import { getAll, getS } from "../../api-client/productApi";
+import Comment from "../../components/Comment";
 import { PrdCate } from "../../models/cateProduct";
 import { Product } from "../../models/product";
 import { addCart } from "../../redux/cartSlice";
@@ -134,59 +135,9 @@ const ProductDetail = ({ product, catePrd }: Props) => {
           </div>
         </section>
       </section>
-      <section>
-        <div>
-          <ul className="flex pb-2">
-            <li className="text-2xl font-semibold text-center uppercase">Nhận xét</li>
-          </ul>
-          <hr />
-        </div>
-        <section>
-          <form action="" className="px-3 py-2 border-2 border-[#4d8a54] mt-3">
-            <h2 className="font-semibold text-xl">Nhận xét về {product.name}</h2>
-            <div className="mt-2">
-              <label htmlFor="" className="">
-                Nhận xét của bạn
-              </label>
-              <textarea
-                name="content"
-                className="mt-5 w-full outline-none border  px-3 py-1 shadow-[inset_0_1px_2px_rgba(0,0,0,0.1)] hover:shadow-none focus:shadow-[0_0_5px_#ccc]"
-                id=""
-                cols={30}
-                rows={10}
-                placeholder="Nhập nội dung bình luận"
-              ></textarea>
-              <div className="text-sm mt-0.5 text-red-500"></div>
-            </div>
-            <button className="my-3 px-4 py-2 bg-[#4d8a54] font-semibold uppercase text-white text-sm transition ease-linear duration-300 hover:shadow-[inset_0_0_100px_rgba(0,0,0,0.2)]">
-              Gửi đi
-            </button>
-          </form>
-          <div>
-            <ul className="mt-4 grid grid-cols-1 divide-y divide-dashed">
-              <li className="flex py-4">
-                <Image
-                  width={70}
-                  height={70}
-                  alt=""
-                  src={
-                    "https://res.cloudinary.com/levantuan/image/upload/v1649570754/asm-react-ts/uw9vo9gkfpl62xpsnyr1.png"
-                  }
-                  className="w-16 h-16 rounded-full object-cover"
-                />
-                <div className="ml-2">
-                  <span className="font-bold">Trường</span>
-                  <span className="pl-3 text-gray-500">(10 Tháng 4, 2022)</span>
-                  <p className="text-gray-900">Trường đẹp trai nhất vũ trụ</p>
-                  <ul className="text-gray-500 flex text-sm mt-1">
-                    <li className="btn-remove transition hover:text-black cursor-pointer">Xóa</li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </section>
+
+      <Comment product={product} />
+
       <section>
         <h1 className="text-3xl font-semibold pt-50 text-center">CÓ THỂ BẠN THÍCH</h1>
       </section>
