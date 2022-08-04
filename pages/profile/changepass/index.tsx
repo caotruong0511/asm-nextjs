@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { ReactElement } from "react";
 import { ClientLayout } from "../../../layouts";
 import ProfileLayout from "../../../layouts/Pro5Layout";
@@ -8,6 +9,9 @@ type Props = {};
 const ChangePassword: NextPageWithLayout = (props: Props) => {
   return (
     <>
+       <Head>
+                <title>Change Password</title>
+            </Head>
       <p className="font-quicksand text-[19px] leading-[26px] pb-3">ĐỔI MẬT KHẨU</p>
       <p className="font-quicksand text-[14px] pb-3">
         {" "}

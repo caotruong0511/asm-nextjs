@@ -3,11 +3,15 @@ import Link from "next/link";
 import { NextPageWithLayout } from "../../../models/layout";
 import { ClientLayout } from "../../../layouts";
 import ProfileLayout from "../../../layouts/Pro5Layout";
+import Head from "next/head";
 type Props = {};
 
 const Myoder: NextPageWithLayout = (props: Props) => {
   return (
     <>
+       <Head>
+                <title>Myoder</title>
+            </Head>
       <p className="font-quicksand text-[19px] leading-[26px] pb-3">ĐƠN HÀNG CỦA BẠN</p>
       <div className="overflow-x-auto relative shadow-md ">
         <table className="w-full text-sm text-left">

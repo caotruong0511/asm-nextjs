@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React, { ReactElement } from "react";
 import { useSelector } from "react-redux";
 import { ClientLayout } from "../../layouts";
@@ -11,6 +12,9 @@ const Profile: NextPageWithLayout = () => {
 
   return (
     <>
+       <Head>
+                <title>Profile</title>
+            </Head>
       <p className="font-quicksand text-[19px] leading-[26px] pb-3">THÔNG TIN TÀI KHOẢN</p>
       <ul className="">
         <li className="text-[14px] py-2">

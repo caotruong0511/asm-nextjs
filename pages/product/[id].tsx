@@ -1,5 +1,6 @@
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +10,9 @@ type Props = {};
 const ProductDetail = (props: Props) => {
   return (
     <div className="container-base">
+         <Head>
+                <title>Product Detail</title>
+            </Head>
       <div>
         <ul className="flex pt-5">
           <li>

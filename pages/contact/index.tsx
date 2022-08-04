@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { addContact } from "../../redux/contactSlice";
 import { error } from "console";
 import { Contact } from "../../models/contact";
+import Head from "next/head";
 type Props = {};
 
 const index = (props: Props) => {
@@ -26,6 +27,9 @@ const index = (props: Props) => {
 
   return (
     <div className="container-base">
+      <Head>
+      <title>Contact</title>
+    </Head>
       <ul className="flex py-5">
         <li>
           <Link href="/">Trang chủ</Link>

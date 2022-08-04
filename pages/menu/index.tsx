@@ -3,6 +3,7 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import { CateProduct } from "../../models/cateProduct";
 import { formatCurrency } from "../../utils";
+import Head from "next/head";
 type Props = {
   cateproduct:CateProduct[];
 };
@@ -13,6 +14,9 @@ const MenuPage = ({cateproduct}: Props) => {
   
   return (
     <div className="container-base pt-[15px]">
+      <Head>
+      <title>Menu</title>
+    </Head>
       <div className="menu_top ">
         <span className="text-[#4d8a54]">
           <a href="" className="text-[#000000]">

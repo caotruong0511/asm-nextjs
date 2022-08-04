@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import React, { ReactElement } from 'react'
 import CateProductList from '../../../components/admin/cateProductList';
@@ -8,6 +9,9 @@ type Props = {}
 const CateProduct = (props: Props) => {
   return (
     <>
+    <Head>
+      <title>CateProduct</title>
+    </Head>
     <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
       <div className="flex items-center text-sm text-gray-600">
         <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">

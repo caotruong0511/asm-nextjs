@@ -2,11 +2,15 @@ import React from "react";
 import Link from "next/link";
 import Sidebar from "../../../components/SidebarProfile/Sidebar";
 import Image from "next/image";
+import Head from "next/head";
 type Props = {};
 
 const Detailorder = (props: Props) => {
   return (
     <div className="container-base  ">
+         <Head>
+                <title>Myoder Detail</title>
+            </Head>
       <ul className="text-[#282828] flex  flex-wrap: wrap text-[14px] font-medium leading-[24px] py-[15px] text-left">
         <li className="hover:text-[#4d8a54] ">
           <Link href=""> Trang chủ / </Link>

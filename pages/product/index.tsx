@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -11,6 +12,9 @@ type Props = {
 const Product = ({ products }: Props) => {
   return (
     <div className="container-base">
+         <Head>
+                <title>Sản phẩm</title>
+            </Head>
       <main>
         <section>
           <div>

@@ -2,6 +2,7 @@ import React from "react";
 import { News } from "../../models/news";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 
 type NewsProps = {
   postsNews: News[];
@@ -10,6 +11,9 @@ type NewsProps = {
 const News = ({ postsNews }: NewsProps) => {
   return (
     <div className="grid lg:grid-cols-2 sm:grid-cols-1 gap-4">
+         <Head>
+                <title>News</title>
+            </Head>
       {postsNews?.map((item, index) => (
         <div className="flex" key={index}>
           <div className="w-[160px] h-[140px] relative">

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 
 type Props = {};
@@ -5,6 +6,9 @@ type Props = {};
 const About = (props: Props) => {
   return (
     <div className="container-base pt-[15px]">
+       <Head>
+                <title>About</title>
+            </Head>
       <div className="menu_top ">
         <span className="text-[#4d8a54]">
           <a href="" className="text-[#000000]">

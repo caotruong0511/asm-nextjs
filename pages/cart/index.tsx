@@ -1,5 +1,6 @@
 import { faChevronRight, faLeftLong, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +10,9 @@ type Props = {};
 const CartList = (props: Props) => {
   return (
     <main>
+      <Head>
+      <title>Cart</title>
+    </Head>
       <section className="container max-w-6xl mx-auto px-3 mt-10">
         <ul className="flex justify-center items-center">
           <li className="text-2xl px-2">

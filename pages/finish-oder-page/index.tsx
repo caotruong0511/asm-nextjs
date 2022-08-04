@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
@@ -5,6 +6,9 @@ type Props = {}
 const FinishPage = (props: Props) => {
     return (
         <div className="container-base pt-[15px]">
+            <Head>
+      <title>Finish Oder Page</title>
+    </Head>
             <div className="mb-32">
                 <div className="content mx-auto mt-10">
                     <ul className="flex justify-center items-center">

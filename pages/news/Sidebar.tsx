@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import { CategoryNews } from "../../models/categoryNews";
@@ -9,6 +10,9 @@ type CateNewsProps = {
 const Sidebar = ({ cateNews }: CateNewsProps) => {
   return (
     <div className="">
+         <Head>
+                <title>Bài viết</title>
+            </Head>
       <aside className="w-full">
         <h2 className=" pt-0  mr-8  leading-[42px] py-[15px] text-left  text-[30px] font-barlow border-b-4 border-green-600 break-before-right  ">
           DANH MỤC TIN TỨC

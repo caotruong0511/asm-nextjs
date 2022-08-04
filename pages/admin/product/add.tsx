@@ -10,6 +10,7 @@ import { uploadImage } from "../../../utils";
 import { addProduct } from "../../../redux/productSlice";
 import { getcateProduct, getone } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
+import Head from "next/head";
 type Props = {};
 
 type Inputs = {
@@ -55,6 +56,9 @@ const Add: NextPageWithLayout = (props: Props) => {
 
   return (
     <>
+     <Head>
+      <title>Add Product</title>
+    </Head>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">

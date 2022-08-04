@@ -6,6 +6,7 @@ import { signin } from "../../api-client/authApi";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { signin as signinAction } from "../../redux/authSlice";
+import Head from "next/head";
 
 type Props = {};
 
@@ -48,6 +49,9 @@ const SigninPage = (props: Props) => {
 
   return (
     <div className="container-base pt-[15px]">
+         <Head>
+                <title>Signin</title>
+            </Head>
       <div className="menu_top ">
         <span className="text-[#4d8a54]">
           <a href="" className="text-[#000000]">

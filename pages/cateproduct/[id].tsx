@@ -1,4 +1,5 @@
 import {  GetStaticProps, GetStaticPropsContext } from 'next';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -16,6 +17,9 @@ const Cateproduct = ({cateproduct}: Props) => {
 
   return (
     <div className="container-base">
+      <Head>
+      <title>{cateproduct?.cateproduct.name}</title>
+    </Head>
       <main>
         <section>
           <div>
