@@ -5,6 +5,7 @@ import News from "./News";
 import { GetStaticProps } from "next";
 import { News as TypeNews } from "../../models/news";
 import { CategoryNews } from "../../models/categoryNews";
+import Head from "next/head";
 type Props = {
   posts: TypeNews[];
   catePost: CategoryNews[];
@@ -13,6 +14,9 @@ type Props = {
 const index = ({ posts, catePost }: Props) => {
   return (
     <div className="container-base ">
+      <Head>
+        <title>News</title>
+      </Head>
       <ul className="text-[#282828] flex  flex-wrap: wrap text-[14px] font-medium leading-[24px] py-[15px] text-left">
         <li className="hover:text-[#4d8a54] ">
           {" "}

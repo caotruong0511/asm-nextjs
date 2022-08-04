@@ -10,6 +10,7 @@ import { uploadImage } from "../../../utils";
 import { addProduct } from "../../../redux/productSlice";
 import { getcateProduct, getone } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
+import Head from "next/head";
 type Props = {};
 
 type Inputs = {
@@ -23,7 +24,7 @@ type Inputs = {
 };
 
 const Add: NextPageWithLayout = (props: Props) => {
-  const cateProducts= useSelector((state:RootState)=>state.cateproduct.cateProducts)
+  const cateProducts = useSelector((state: RootState) => state.cateproduct.cateProducts);
   const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
 
@@ -34,11 +35,11 @@ const Add: NextPageWithLayout = (props: Props) => {
     reset,
   } = useForm<Inputs>();
 
-  useEffect(()=>{
-     dispatch(getcateProduct())
-  },[dispatch])
- console.log(cateProducts);
- 
+  useEffect(() => {
+    dispatch(getcateProduct());
+  }, [dispatch]);
+  console.log(cateProducts);
+
   const onSubmit: SubmitHandler<Inputs> = async (values: Inputs) => {
     try {
       const { data } = await uploadImage(values.image[0]);
@@ -55,6 +56,9 @@ const Add: NextPageWithLayout = (props: Props) => {
 
   return (
     <>
+      <Head>
+        <title>Add Product</title>
+      </Head>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">
@@ -103,11 +107,11 @@ const Add: NextPageWithLayout = (props: Props) => {
                     className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
                     <option value="">-- Chọn vai trò --</option>
-                    {cateProducts?.map((e,index)=>
-                    <>
-                    <option  value={e._id}>{e.name}</option>
-                    </>
-                    )}
+                    {cateProducts?.map((e, index) => (
+                      <>
+                        <option value={e._id}>{e.name}</option>
+                      </>
+                    ))}
                   </select>
                   <div className="text-sm mt-0.5 text-red-500">{errors.catygoryId?.message}</div>
                 </div>

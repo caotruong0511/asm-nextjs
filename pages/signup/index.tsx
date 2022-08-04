@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { signup } from "../../api-client/authApi";
 import { useRouter } from "next/router";
+import Head from "next/head";
 type Props = {};
 
 type Inputs = {
@@ -37,6 +38,9 @@ const SignupPage = (props: Props) => {
 
   return (
     <div className="container-base pt-[15px]">
+      <Head>
+        <title>Signup</title>
+      </Head>
       <div className="menu_top ">
         <span className="text-[#4d8a54]">
           <a href="" className="text-[#000000]">
