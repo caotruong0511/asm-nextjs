@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import React from 'react'
 
 type Props = {}
@@ -5,6 +6,9 @@ type Props = {}
 const Relateto = (props: Props) => {
     return (
         <div className='px-5'>
+            <Head>
+                <title>Relateto</title>
+            </Head>
             <h2 className='text-center text-[40px] font-barlow '>BÀI VIẾT LIÊN QUAN</h2>
             <div className='grid md:grid-cols-3 gap-5 grid-cols-1 my-[20px] text-center'>
                 <div className='text-center'>

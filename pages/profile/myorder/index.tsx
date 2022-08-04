@@ -10,6 +10,7 @@ import { RootState } from "../../../redux/store";
 import { User } from "../../../models/users";
 import moment from "moment";
 import { formatCurrency } from "../../../utils";
+import Head from "next/head";
 type Props = {};
 
 const Myoder: NextPageWithLayout = (props: Props) => {
@@ -30,6 +31,10 @@ const Myoder: NextPageWithLayout = (props: Props) => {
 
   return (
     <>
+      <Head>
+        <title>My Order</title>
+      </Head>
+
       <p className="font-quicksand text-[19px] leading-[26px] pb-3">ĐƠN HÀNG CỦA BẠN</p>
       <div className="overflow-x-auto relative shadow-md ">
         <table className="w-full text-sm text-left">

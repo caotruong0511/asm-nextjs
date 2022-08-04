@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -71,6 +72,10 @@ const CheckoutPage = (props: Props) => {
 
   return (
     <div className="container-base pt-[15px]">
+      <Head>
+        <title>Checkout</title>
+      </Head>
+
       <CartNav />
 
       <div className="form-checkout__page">

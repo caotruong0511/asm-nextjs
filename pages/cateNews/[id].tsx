@@ -1,22 +1,20 @@
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import React from "react";
 import Link from "next/link";
-import Sidebar from "./Sidebar";
-import News from "./News";
-import { GetStaticProps } from "next";
-import { News as TypeNews } from "../../models/news";
+import { get, getAll } from "../../api-client/cateNewsApi";
 import { CategoryNews } from "../../models/categoryNews";
-import Head from "next/head";
+import Sidebar from "../news/Sidebar";
+import News from "../news/News";
+
 type Props = {
-  posts: TypeNews[];
+  cateNews: CategoryNews;
   catePost: CategoryNews[];
 };
 
-const index = ({ posts, catePost }: Props) => {
+const CateNews = ({ cateNews, catePost }: Props) => {
+  const news = cateNews.news;
   return (
     <div className="container-base ">
-      <Head>
-        <title>News</title>
-      </Head>
       <ul className="text-[#282828] flex  flex-wrap: wrap text-[14px] font-medium leading-[24px] py-[15px] text-left">
         <li className="hover:text-[#4d8a54] ">
           {" "}
@@ -28,7 +26,7 @@ const index = ({ posts, catePost }: Props) => {
       </ul>
       <div className="grid md:grid-cols-3 md:gap-5 sm:gap-6 sm:grid-cols-2">
         <div className="md:col-span-2 sm:col-span-1">
-          <News postsNews={posts}></News>
+          <News postsNews={news}></News>
         </div>
         <div className="col-span-1 ">
           <Sidebar cateNews={catePost}></Sidebar>
@@ -38,20 +36,29 @@ const index = ({ posts, catePost }: Props) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const res = await fetch("http://localhost:8080/api/news");
-  const posts = await res.json();
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await getAll();
+  const pathsnews = data.map((cateNews) => ({ params: { id: cateNews._id } }));
+  return {
+    paths: pathsnews,
+    fallback: true,
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext) => {
+  const id = context.params?.id as string;
+  const cateNews = await get(id);
 
   const req = await fetch("http://localhost:8080/api/categoryNews");
   const catePost = await req.json();
 
   return {
     props: {
-      posts,
-      catePost, //dòng này là cái props
+      cateNews,
+      catePost,
     },
     revalidate: 60,
   };
 };
 
-export default index;
+export default CateNews;

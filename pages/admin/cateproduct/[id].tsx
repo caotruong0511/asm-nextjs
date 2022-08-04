@@ -10,6 +10,7 @@ import Image from "next/image";
 import { type } from "os";
 import { addCateProduct, getone, updateCateProduct } from "../../../redux/cateProductSlice";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 type Props = {};
 type cateProduct = {
@@ -19,11 +20,11 @@ type cateProduct = {
   };
 };
 const EditCateProduct: NextPageWithLayout = (props: Props) => {
-    const [preview, setPreview] = useState<string>();
+  const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
-  
+
   const {
     register,
     handleSubmit,
@@ -34,8 +35,8 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
   const onSubmit: SubmitHandler<cateProduct> = async (values: cateProduct) => {
     try {
       if (typeof values.image === "object") {
-      const { data } = await uploadImage(values.image[0]);
-      values.image = data.url;
+        const { data } = await uploadImage(values.image[0]);
+        values.image = data.url;
       }
       await dispatch(updateCateProduct(values)).unwrap();
       toast.success("Cập nhật thành công");
@@ -48,18 +49,20 @@ const EditCateProduct: NextPageWithLayout = (props: Props) => {
   };
   useEffect(() => {
     (async () => {
-  console.log(id);
-     
-        const {cateproduct}=  await dispatch(getone(id)).unwrap();
-        console.log(cateproduct);
-        
-        reset(cateproduct);
-        setPreview(cateproduct.image);
-     
+      console.log(id);
+
+      const { cateproduct } = await dispatch(getone(id)).unwrap();
+      console.log(cateproduct);
+
+      reset(cateproduct);
+      setPreview(cateproduct.image);
     })();
-  }, [dispatch,id, reset]);
+  }, [dispatch, id, reset]);
   return (
     <>
+      <Head>
+        <title>Edit CateProduct</title>
+      </Head>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">

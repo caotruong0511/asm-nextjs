@@ -1,13 +1,16 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { AdminLayout } from "../../../../layouts";
 import { NextPageWithLayout } from "../../../../models/layout";
+import { getCateNews } from "../../../../redux/cateNewsSlice";
 import { getNew, updateNews } from "../../../../redux/newsSlice";
+import { RootState } from "../../../../redux/store";
 import { uploadImage } from "../../../../utils";
 
 type Props = {};
@@ -20,6 +23,7 @@ type Inputs = {
   };
   desc: string;
   content: string;
+  categoryId: string;
 };
 
 const UpdateNews: NextPageWithLayout = (props: Props) => {
@@ -27,6 +31,7 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
+  const cateNews = useSelector((state: RootState) => state.new.cateNews);
 
   const {
     register,
@@ -51,6 +56,7 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
     (async () => {
       try {
         const news = await dispatch(getNew(id)).unwrap();
+        await dispatch(getCateNews()).unwrap();
         reset(news);
         setPreview(news.thumbnail);
       } catch (error) {
@@ -60,6 +66,9 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
   }, [dispatch, id, reset]);
   return (
     <>
+      <Head>
+        <title>Edit News</title>
+      </Head>
       <header className="z-10 fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5 className="relative pr-5 after:content-[''] after:absolute after:w-[1px] after:h-4 after:top-1/2 after:-translate-y-1/2 after:right-2.5 after:bg-gray-300">
@@ -98,6 +107,28 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
                     placeholder="Nhập tiêu đề bài viết"
                   />
                   <div className="error-image text-sm mt-0.5 text-red-500">{errors.title?.message}</div>
+                </div>
+
+                <div className="col-span-6 md:col-span-3">
+                  <label htmlFor="form__add-user-role" className="block text-sm font-medium text-gray-700">
+                    Danh mục
+                  </label>
+                  <select
+                    id="form__add-user-role"
+                    {...register("categoryId", { required: "Vui lòng chọn danh mục" })}
+                    defaultValue={0}
+                    className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  >
+                    <option value="">-- Chọn danh mục --</option>
+                    {cateNews?.map((e, index) => (
+                      <>
+                        <option key={index} value={e._id}>
+                          {e.name}
+                        </option>
+                      </>
+                    ))}
+                  </select>
+                  <div className="text-sm mt-0.5 text-red-500">{errors.categoryId?.message}</div>
                 </div>
 
                 <div className="col-span-6">
@@ -165,7 +196,7 @@ const UpdateNews: NextPageWithLayout = (props: Props) => {
                 className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 {" "}
-                Thêm bài viết{" "}
+                Cập nhật bài viết{" "}
               </button>
             </div>
           </div>

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import React from "react";
 import CartNav from "../../components/CartNav";
@@ -7,6 +8,9 @@ type Props = {};
 const FinishPage = (props: Props) => {
   return (
     <div className="container-base pt-[15px]">
+      <Head>
+        <title>Đặt hàng thành công</title>
+      </Head>
       <div className="mb-32">
         <CartNav />
 
