@@ -5,5 +5,5 @@ export type Product = {
   price: number;
   desc: string;
   slug: string;
-  catygoryId: string;
+  catygoryId: any;
 };

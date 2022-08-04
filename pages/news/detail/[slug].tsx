@@ -9,6 +9,7 @@ import { News } from "../../../models/news";
 import moment from "moment";
 import { CategoryNews } from "../../../models/categoryNews";
 import Image from "next/image";
+import Head from "next/head";
 
 type PostsDetailProps = {
   newDetail: News;
@@ -19,6 +20,9 @@ const Detail = ({ newDetail, categoryNews }: PostsDetailProps) => {
   console.log(newDetail);
   return (
     <div className="container-base">
+      <Head>
+      <title>{newDetail.title}</title>
+    </Head>
       <ul className="text-[#282828] flex  flex-wrap: wrap text-[14px] font-medium leading-[24px] py-[15px] text-left">
         <li className="hover:text-[#4d8a54] ">
           {" "}

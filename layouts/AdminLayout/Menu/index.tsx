@@ -13,7 +13,7 @@ const AdminMenu = (props: Props) => {
         <span className="flex items-center p-4 text-white font-bold text-3xl cursor-pointer">Yotea</span>
       </Link>
       <nav className="text-sm font-medium text-gray-500" aria-label="Main Navigation">
-        <Link href="">
+        <Link href="/admin">
           <span className="flex items-center px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <svg
               className="shrink-0 w-5 h-5 mr-2 text-gray-400 transition group-hover:text-gray-300"
@@ -27,16 +27,16 @@ const AdminMenu = (props: Props) => {
           </span>
         </Link>
 
-        <Link href="">
+        <Link href="/admin/order">
           <span className="flex items-center px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">
               <FontAwesomeIcon icon={faShoppingCart} />
             </div>
-            <span>Cart</span>
+            <span>Order</span>
           </span>
         </Link>
 
-        <Link href="">
+        <Link href="/admin/cateproduct">
           <span className="flex items-center justify-between px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="flex items-center">
               <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">
@@ -47,7 +47,7 @@ const AdminMenu = (props: Props) => {
           </span>
         </Link>
 
-        <Link href="">
+        <Link href="/admin/product">
           <span className="flex items-center justify-between px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="flex items-center">
               <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">
@@ -91,7 +91,7 @@ const AdminMenu = (props: Props) => {
           </span>
         </Link>
 
-        <Link href="">
+        <Link href="/admin/slider">
           <span className="flex items-center justify-between px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="flex items-center">
               <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">
@@ -102,7 +102,7 @@ const AdminMenu = (props: Props) => {
           </span>
         </Link>
 
-        <Link href="">
+        <Link href="/admin/comment">
           <span className="flex items-center justify-between px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="flex items-center">
               <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">
@@ -157,7 +157,7 @@ const AdminMenu = (props: Props) => {
           </span>
         </Link> */}
 
-        <Link href="/contact">
+        <Link href="/admin/contact">
           <span className="flex items-center justify-between px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200">
             <div className="flex items-center">
               <div className="shrink-0 w-5 h-5 mr-2 text-gray-300 transition group-hover:text-gray-300">

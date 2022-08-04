@@ -1,6 +1,7 @@
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from "next";
+import Head from "next/head";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -70,6 +71,9 @@ const ProductDetail = ({ product, catePrd }: Props) => {
 
   return (
     <div className="container-base">
+      <Head>
+        <title>{product.name}</title>
+      </Head>
       <div>
         <ul className="flex pt-5">
           <li>
