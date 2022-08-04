@@ -20,3 +20,6 @@ export const get = (id: string): Promise<User> => {
 export const update = (user: User): Promise<User> => {
   return axiosClient.put(`/users/${user._id}`, user);
 };
+export const changePass = (user: any): Promise<any> => {
+  return axiosClient.put(`/users/changepassword/${user._id}`, user);
+};
