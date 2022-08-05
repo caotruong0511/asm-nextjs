@@ -13,8 +13,8 @@ export const add = (news: CategoryNews): Promise<CategoryNews> => {
   return axiosClient.post("/categoryNews", news);
 };
 
-export const get = (id: string): Promise<CategoryNews> => {
-  return axiosClient.get(`/categoryNews/${id}`);
+export const get = (id?: string): Promise<CategoryNews> => {
+  return axiosServer.get(`/categoryNews/${id}`);
 };
 export const update = (news: CategoryNews): Promise<CategoryNews> => {
   return axiosClient.put(`/categoryNews/${news._id}`, news);

@@ -1,14 +1,14 @@
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ReactElement, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Head from "next/head";
+import React, { ReactElement, useEffect } from "react";
 import { AdminLayout } from "../../layouts";
 import { NextPageWithLayout } from "../../models/layout";
 import { getNews } from "../../redux/newsSlice";
 import { getproduct } from "../../redux/productSlice";
 import { RootState } from "../../redux/store";
 import { getUsers } from "../../redux/userSlice";
-import news from "./news";
 
 type Props = {};
 
@@ -32,6 +32,10 @@ const Dashboard: NextPageWithLayout = (props: Props) => {
 
   return (
     <>
+      <Head>
+        <title>Admin</title>
+      </Head>
+
       <header className="fixed top-14 left-0 md:left-60 right-0 px-4 py-1.5 bg-white shadow-[0_1px_2px_rgba(0,0,0,0.1)] flex items-center justify-between">
         <div className="flex items-center text-sm text-gray-600">
           <h5>Dashboard</h5>

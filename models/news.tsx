@@ -6,4 +6,5 @@ export type News = {
   desc: string;
   content: string;
   createdAt: Date;
+  categoryId: any;
 };

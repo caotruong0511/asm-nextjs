@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import React, { ReactElement } from "react";
 import { EmptyLayout } from "../layouts";
@@ -8,6 +9,9 @@ type Props = {};
 const NotfoundPage: NextPageWithLayout = (props: Props) => {
   return (
     <div className="font-quicksand fixed top-0 right-0 bottom-0 left-0 z-10 bg-white flex items-center justify-center flex-col">
+      <Head>
+        <title>Errors 404</title>
+      </Head>
       <div className="flex">
         <p className="text-indigo-500 font-bold text-7xl border-r pr-4">404</p>
         <div className="pl-4">

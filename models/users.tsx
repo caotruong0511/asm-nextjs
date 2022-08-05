@@ -8,3 +8,15 @@ export type User = {
   role?: number;
   createdAt?: Date;
 };
+
+export type UserChangePass = {
+  _id?: string;
+  name: string;
+  email: string;
+  phone: string;
+  avatar?: string;
+  role?: number;
+  oldPassword: string;
+  newPassword: string;
+  createdAt?: Date;
+};

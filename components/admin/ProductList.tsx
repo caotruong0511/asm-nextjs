@@ -80,7 +80,7 @@ const ProductList = (props: Props) => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.price}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.desc}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.catygoryId}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.catygoryId.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">{}</td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                 <Link href={`/admin/product/${item._id}`}>

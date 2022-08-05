@@ -45,6 +45,9 @@ const NewList = (props: Props) => {
           <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Thumbnail
           </th>
+          <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            CateNews
+          </th>
           {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
             Description
           </th>
@@ -62,6 +65,7 @@ const NewList = (props: Props) => {
                 {item.title}
               </Link>
             </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.categoryId.name}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 w-12 h-12 relative object-cover">
               {item.thumbnail && <Image src={item.thumbnail} layout="fill" alt="" className=" object-cover" />}
             </td>
