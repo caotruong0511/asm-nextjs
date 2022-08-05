@@ -67,7 +67,7 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
       reset(product);
       setPreview(product.image);
     })();
-  }, [dispatch, id, reset]);
+  }, [cateProducts, dispatch, id, reset]);
 
   return (
     <>
@@ -148,17 +148,18 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                 </div>
 
                 <div className="col-span-6">
-                  <label htmlFor="form__add-user-email" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="form__add-cate-title" className="block text-sm font-medium text-gray-700">
                     Mô tả
                   </label>
-                  <input
-                    {...register("desc", { required: "Vui lòng nhập mô tả" })}
-                    type="text"
-                    id="form__add-user-email"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  <textarea
+                    id=""
+                    {...register("desc", { required: "Vui lòng nhập đầy đủ" })}
+                    cols={30}
+                    rows={10}
                     placeholder="Nhập mô tả"
-                  />
-                  <div className="text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
+                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  ></textarea>
+                  <div className="error-image text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
                 </div>
 
                 <div className="col-span-3">

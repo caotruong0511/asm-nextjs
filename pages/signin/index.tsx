@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { signin as signinAction } from "../../redux/authSlice";
 import Head from "next/head";
+import Link from "next/link";
 
 type Props = {};
 
@@ -67,10 +68,9 @@ const SigninPage = (props: Props) => {
             {" "}
             <span>
               Nếu bạn chưa có tài khoản,
-              <a href="" className="hover:text-[#4d8a54]">
-                {" "}
-                đăng ký tại đây
-              </a>
+              <Link href="/signup">
+                <span className="cursor-pointer hover:text-[#4d8a54]"> đăng ký tại đây</span>
+              </Link>
             </span>
           </div>
         </div>

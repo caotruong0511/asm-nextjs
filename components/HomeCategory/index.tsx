@@ -40,7 +40,7 @@ const HomeCategory = ({ listCategory }: HomeCategoryProps) => {
       <Slider {...settings} className="group">
         {listCategory?.map((item, index) => (
           <li className="cursor-pointer my-8" key={index}>
-            <Link href="/hehe">
+            <Link href={`/cateproduct/${item._id}`}>
               <div className="text-center">
                 <Image src={item.image} alt="" width={235} height={160} className="object-cover" />
 

@@ -5,6 +5,7 @@ import { getproduct, removeproduct } from "../../redux/productSlice";
 import Link from "next/link";
 import Image from "next/image";
 import Swal from "sweetalert2";
+import { formatCurrency } from "../../utils";
 type Props = {};
 
 const ProductList = (props: Props) => {
@@ -78,7 +79,7 @@ const ProductList = (props: Props) => {
                   </div>
                 </div>
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.price}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{formatCurrency(item.price)}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.desc}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.catygoryId.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">{}</td>

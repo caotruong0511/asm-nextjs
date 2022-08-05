@@ -4,6 +4,7 @@ export type CateProduct = {
   _id?: string;
   name: string;
   image: string;
+  products: Product[];
 };
 
 export type PrdCate = {

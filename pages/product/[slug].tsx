@@ -150,7 +150,7 @@ const ProductDetail = ({ product, catePrd }: Props) => {
           {catePrd.cateproduct.products?.slice(0, 4).map((item, index) => (
             <div className="group" key={index}>
               <div className="relative bg-[#f7f7f7] overflow-hidden border mt-10 pt-[100%]">
-                {product.image && <Image src={product.image} alt="" layout="fill" />}
+                {item.image && <Image src={item.image} alt="" layout="fill" />}
                 <button className="absolute w-full bottom-0 h-9 bg-primary text-center text-gray-50 opacity-95 uppercase font-semibold text-sm transition ease-linear duration-300 hover:opacity-100 hover:text-white translate-y-full group-hover:translate-y-0">
                   Xem nhanh
                 </button>

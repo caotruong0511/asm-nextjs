@@ -19,7 +19,7 @@ type Inputs = {
   url: string;
   title: string;
 };
-const add: NextPageWithLayout = (props: Props) => {
+const Add: NextPageWithLayout = (props: Props) => {
   const [preview, setPreview] = useState<string>();
   const dispatch = useDispatch<any>();
 
@@ -157,5 +157,5 @@ const add: NextPageWithLayout = (props: Props) => {
     </div>
   );
 };
-add.getLayout = (page: ReactElement) => <AdminLayout>{page}</AdminLayout>;
-export default add;
+Add.getLayout = (page: ReactElement) => <AdminLayout>{page}</AdminLayout>;
+export default Add;
