@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { uploadImage } from "../../../utils";
 import { getone, updateproduct } from "../../../redux/productSlice";
 import { useRouter } from "next/router";
-import { get } from "../../../api-client/productApi";
 import { getcateProduct } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
 import Head from "next/head";
@@ -31,7 +30,6 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
-  console.log(cateProducts);
 
   const {
     register,
@@ -57,17 +55,14 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   };
   useEffect(() => {
     (async () => {
-      console.log(id);
-
       const product = await dispatch(getone(id)).unwrap();
 
       const cate = await dispatch(getcateProduct());
 
-      console.log(cateProducts);
       reset(product);
       setPreview(product.image);
     })();
-  }, [cateProducts, dispatch, id, reset]);
+  }, [dispatch, id, reset]);
 
   return (
     <>

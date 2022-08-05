@@ -46,7 +46,7 @@ const Add: NextPageWithLayout = (props: Props) => {
       values.image = data.url;
 
       await dispatch(addProduct(values)).unwrap();
-      toast.success("Thêm danh mục thành công");
+      toast.success("Thêm SP thành công");
       reset();
       setPreview("");
     } catch (error) {
