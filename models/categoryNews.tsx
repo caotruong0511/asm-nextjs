@@ -5,3 +5,8 @@ export type CategoryNews = {
   name: string;
   news: News[];
 };
+
+export type NewsCate = {
+  catenew: CategoryNews;
+  news: News[];
+};

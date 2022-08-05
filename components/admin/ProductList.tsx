@@ -11,12 +11,10 @@ type Props = {};
 const ProductList = (props: Props) => {
   const product = useSelector((state: RootState) => state.product.products);
   const dispatch = useDispatch<any>();
-  console.log(product);
 
   useEffect(() => {
     dispatch(getproduct());
   }, [dispatch]);
-  console.log(product);
 
   const handleRemove = (id: any) => {
     Swal.fire({
@@ -80,7 +78,7 @@ const ProductList = (props: Props) => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{formatCurrency(item.price)}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.desc}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.desc.substring(0, 30)}...</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.catygoryId.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-500">{}</td>
               <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
