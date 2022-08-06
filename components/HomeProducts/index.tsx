@@ -47,7 +47,9 @@ const HomeProducts = ({ products }: HomeProductsProps) => {
           {products.slice(0, 8).map((item, index) => (
             <div key={index}>
               <div className="border border-[#ebebeb] relative pt-[100%] cursor-pointer group overflow-hidden">
-                <Link href="">{item.image && <Image src={item.image} layout="fill" alt="" />}</Link>
+                <Link href={`/product/${item.slug}`}>
+                  {item.image && <Image src={item.image} layout="fill" alt="" />}
+                </Link>
 
                 <button className="absolute bottom-0 w-full h-10 bg-primary text-white font-bold translate-y-full group-hover:translate-y-0 transition-all duration-300 opacity-90 hover:opacity-100">
                   Thêm vào giỏ hàng
@@ -56,7 +58,7 @@ const HomeProducts = ({ products }: HomeProductsProps) => {
 
               <div className="text-center text-lg font-bold py-3">
                 <h3 className="hover:text-[#4d8a54]">
-                  <Link href="">{item.name}</Link>
+                  <Link href={`/product/${item.slug}`}>{item.name}</Link>
                 </h3>
                 <p>
                   <span className="font-normal">Giá</span>: {formatCurrency(item.price)}

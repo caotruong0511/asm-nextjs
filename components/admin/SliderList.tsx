@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,7 +52,9 @@ const SliderList = (props: Props) => {
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{++index}</td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.image}</td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <img src={item.image} alt="" className="w-[70px] h-[50px]" />
+              <div className="w-[70px] h-[50px] relative">
+                <Image src={item.image} alt="" layout="fill" />
+              </div>
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
               <Link

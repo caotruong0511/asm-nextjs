@@ -5,8 +5,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 import CartNav from "../../components/CartNav";
-import { decreaseQnt, increaseQnt, selectCarts, selectTotalPrice } from "../../redux/cartSlice";
+import { decreaseQnt, increaseQnt, removeCart, selectCarts, selectTotalPrice } from "../../redux/cartSlice";
 import { formatCurrency } from "../../utils";
 
 type Props = {};
@@ -22,6 +23,23 @@ const CartList = (props: Props) => {
 
   const handleDecreaseQnt = (productId: string) => {
     dispatch(decreaseQnt(productId));
+  };
+
+  const handleRemoveCart = (productId: string) => {
+    Swal.fire({
+      title: "Bạn có chắc chắn muốn xóa SP",
+      text: "Không thể hoàn tác sau khi xóa",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(removeCart(productId));
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+      }
+    });
   };
 
   return (
@@ -52,6 +70,7 @@ const CartList = (props: Props) => {
                       <td>
                         <button
                           type="button"
+                          onClick={() => handleRemoveCart(item.productId)}
                           className="p-2 text-gray-400 text-xl transition ease-linear duration-200 hover:text-black"
                         >
                           <FontAwesomeIcon icon={faTimes} />
@@ -105,7 +124,7 @@ const CartList = (props: Props) => {
                   <Link href="/product">
                     <button
                       type="button"
-                      className="select-none uppercase h-8 text-primary font-semibold text-sm border-[#4d8a54] border-2 px-3 transition ease-linear duration-300 hover:bg-[#D9A953] hover:text-white"
+                      className="select-none uppercase h-8 text-primary font-semibold text-sm border-[#4d8a54] border-2 px-3 transition ease-linear duration-300 hover:bg-[#4d8a54] hover:text-white"
                     >
                       <FontAwesomeIcon icon={faLeftLong} />
                       <span> Tiếp tục xem sản phẩm</span>

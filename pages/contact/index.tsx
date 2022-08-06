@@ -1,14 +1,14 @@
 import React from "react";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { addContact } from "../../redux/contactSlice";
 import { Contact } from "../../models/contact";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
 type Props = {};
 
-const index = (props: Props) => {
+const Contact = (props: Props) => {
   const dispatch = useDispatch<any>();
   const {
     register,
@@ -143,4 +143,4 @@ const index = (props: Props) => {
   );
 };
 
-export default index;
+export default Contact;

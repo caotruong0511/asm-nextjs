@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { uploadImage } from "../../../utils";
 import { getone, updateproduct } from "../../../redux/productSlice";
 import { useRouter } from "next/router";
-import { get } from "../../../api-client/productApi";
 import { getcateProduct } from "../../../redux/cateProductSlice";
 import { RootState } from "../../../redux/store";
 import Head from "next/head";
@@ -31,7 +30,6 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   const dispatch = useDispatch<any>();
   const router = useRouter();
   const { id } = router.query;
-  console.log(cateProducts);
 
   const {
     register,
@@ -57,13 +55,10 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
   };
   useEffect(() => {
     (async () => {
-      console.log(id);
-
       const product = await dispatch(getone(id)).unwrap();
 
       const cate = await dispatch(getcateProduct());
 
-      console.log(cateProducts);
       reset(product);
       setPreview(product.image);
     })();
@@ -148,17 +143,18 @@ const ProductEdit: NextPageWithLayout = (props: Props) => {
                 </div>
 
                 <div className="col-span-6">
-                  <label htmlFor="form__add-user-email" className="block text-sm font-medium text-gray-700">
+                  <label htmlFor="form__add-cate-title" className="block text-sm font-medium text-gray-700">
                     Mô tả
                   </label>
-                  <input
-                    {...register("desc", { required: "Vui lòng nhập mô tả" })}
-                    type="text"
-                    id="form__add-user-email"
-                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  <textarea
+                    id=""
+                    {...register("desc", { required: "Vui lòng nhập đầy đủ" })}
+                    cols={30}
+                    rows={10}
                     placeholder="Nhập mô tả"
-                  />
-                  <div className="text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
+                    className="py-2 px-3 mt-1 border focus:ring-indigo-500 focus:border-indigo-500 focus:outline-none block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                  ></textarea>
+                  <div className="error-image text-sm mt-0.5 text-red-500">{errors.desc?.message}</div>
                 </div>
 
                 <div className="col-span-3">

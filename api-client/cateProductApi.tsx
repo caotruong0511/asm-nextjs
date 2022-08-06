@@ -13,7 +13,7 @@ export const add = (cateproduct: CateProduct): Promise<CateProduct> => {
   return axiosClient.post("/cateproduct", cateproduct);
 };
 
-export const get = (id?: string): Promise<CateProduct> => {
+export const get = (id?: string): Promise<PrdCate> => {
   return axiosServer.get(`/cateproduct/${id}`);
 };
 

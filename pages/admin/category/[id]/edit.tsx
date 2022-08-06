@@ -43,7 +43,7 @@ const UpdateCategory: NextPageWithLayout = (props: Props) => {
     (async () => {
       try {
         const cateNews = await dispatch(getCateNew(id)).unwrap();
-        reset(cateNews);
+        reset(cateNews.catenew);
         setPreview("");
       } catch (error) {
         console.log(error);

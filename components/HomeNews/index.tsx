@@ -21,7 +21,7 @@ const HomeNews = ({ newsList }: HomeNewsProps) => {
 
             <div className="py-2">
               <h2 className="text-normal font-bebas uppercase limit-line-2 text-2xl hover:text-[#4d8a54]">
-                <Link href="">{item.title}</Link>
+                <Link href={`/news/detail/${item.slug}`}>{item.title}</Link>
               </h2>
 
               <p className="limit-line-5 leading-6 mt-2 text-justify">{item.desc}</p>

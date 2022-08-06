@@ -57,7 +57,7 @@ const newsSlice = createSlice({
     });
 
     builder.addCase(getCateNew.fulfilled, (state, { payload }) => {
-      state.cateNew = payload as CategoryNews;
+      state.cateNew = payload;
     });
 
     builder.addCase(updateCateNews.fulfilled, (state, { payload }) => {
